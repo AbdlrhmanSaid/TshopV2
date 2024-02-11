@@ -125,7 +125,7 @@ function NavbarApp() {
               <Button
                 variant="primary"
                 onClick={handleShowLogout}
-                className="ms-3"
+                className="ms-3 logbtn"
               >
                 {isEnglish ? "Log Out" : " سجل الخروج"}
                 <FontAwesomeIcon
@@ -167,7 +167,7 @@ function NavbarApp() {
             </>
           ) : (
             <Link to="/Login" className="ms-3">
-              <Button variant="primary">
+              <Button variant="primary logbtn">
                 {isEnglish ? "Log in" : " سجل الدخول"}
               </Button>
             </Link>

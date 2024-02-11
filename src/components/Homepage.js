@@ -71,9 +71,9 @@ export const Homepage = () => {
         </div>
       ) : (
         <>
-          <div className="headerMain d-flex mt-3">
+          <div className="headerMain d-flex mt-3 overflow-hidden">
             <div
-              className="btns my-3 ms-3 align-items-center text-center d-flex flex-column"
+              className="btns m-3 align-items-center text-center d-flex flex-column"
               style={{ flex: "0" }}
             >
               <Button
@@ -96,9 +96,12 @@ export const Homepage = () => {
                 </Button>
               ))}
             </div>
-            <Row className="justify-content-center" style={{ flex: "1" }}>
-              <Col xs={12} md={8}>
-                <div id="carouselExampleIndicators" className="carousel slide">
+            <Row className="justify-content-center " style={{ flex: "1" }}>
+              <Col xs={12} md={8} className="parent-slide">
+                <div
+                  id="carouselExampleIndicators child-slide"
+                  className="carousel slide"
+                >
                   <div className="carousel-indicators">
                     {filteredProducts.map((product, index) => (
                       <button
