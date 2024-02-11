@@ -1,0 +1,137 @@
+a {
+  text-decoration: none;
+}
+a.linkbtn {
+  text-decoration: none;
+  color: white;
+}
+
+::-webkit-scrollbar {
+  width: 7px; /* عرض الشريط */
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* لون خلفية المسار */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #888; /* لون الشريط نفسه */
+  border-radius: 6px; /* شكل حواف الشريط */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555; /* لون الشريط عند التحويم */
+}
+.nav-link {
+  padding: 0;
+}
+nav .searchArea:focus {
+  outline: none;
+  box-shadow: none;
+}
+nav .searchArea,
+nav .searchbtn {
+  cursor: pointer;
+}
+.main .footer {
+  justify-content: space-around;
+  align-items: center;
+}
+.main .price {
+  margin: 0;
+}
+.cart {
+  height: 90%;
+}
+.cart-icon {
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  position: fixed;
+  left: 1%;
+  top: 11%;
+}
+.min-pic {
+  width: 40px;
+}
+.big-pic {
+  width: 80px;
+}
+.products {
+  overflow: auto;
+}
+.spinners {
+  margin-top: 20%;
+}
+
+.card {
+  height: 100%;
+}
+.card .card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+footer a {
+  text-decoration: none;
+  font-weight: bold;
+  letter-spacing: 3px;
+}
+
+.carousel-control-next-icon,
+.carousel-control-prev-icon {
+  background-color: #777;
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.carousel-indicators {
+  background: #00000069;
+  border-radius: 6px;
+}
+footer {
+  position: relative;
+  bottom: 0;
+}
+.signhbtn a {
+  color: white;
+  font-weight: 600;
+}
+.carousel-item img {
+  height: 500px;
+  max-height: 500px;
+}
+@media (min-width: 767px) {
+  .card-red {
+    width: 50%;
+  }
+}
+.modal-header {
+  background-color: #0d6efd;
+  color: white;
+}
+.card-text {
+  display: flex;
+  align-items: center;
+}
+.btns {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  border-radius: 10px;
+}
+.categoryName {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 5px 10px;
+  border-radius: 10px;
+}
+.btn-tabs {
+  border: none;
+  justify-content: center;
+}
+
+a {
+  text-decoration: none;
+}
