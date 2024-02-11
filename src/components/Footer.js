@@ -2,19 +2,33 @@
 
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
+import { selectLanguage } from "../rtk/slices/deflanSlice";
+import { useSelector } from "react-redux";
 
 const Footer = () => {
+  const isEnglish = useSelector(selectLanguage);
+
   return (
     <footer className="bg-dark text-light mt-5">
       <Container className="pt-3">
         <Row>
           <Col lg={4} md={6} sm={12}>
-            <h5>Contact Us</h5>
-            <p>Email: info@example.com</p>
-            <p>Phone: +123456789</p>
+            {isEnglish ? (
+              <>
+                <h5>Contact Us</h5>
+                <p>Email: bodesaid3@gmail.com</p>
+                <p>Phone: 01207634290</p>
+              </>
+            ) : (
+              <>
+                <h5>تواصل معنا</h5>
+                <p>bodesaid3@gmail.com : البريد</p>
+                <p> 01207634290 :الهاتف</p>
+              </>
+            )}
           </Col>
           <Col lg={4} md={6} sm={12}>
-            <h5>Follow Us</h5>
+            <h5>{isEnglish ? "Follow Us" : "تابعنا"}</h5>
             <p className=" link-primary">
               <a
                 href="https://www.facebook.com"
@@ -44,13 +58,18 @@ const Footer = () => {
             </p>
           </Col>
           <Col lg={4} md={12} sm={12}>
-            <h5>Newsletter</h5>
-            <p>Subscribe to our newsletter for updates</p>
+            <h5>{isEnglish ? "Newsletter" : "النشرة الاخبارية"}</h5>
+            <p>
+              {isEnglish
+                ? "Subscribe to our newsletter for updates"
+                : "تابعنا لمعرفة اخر اخبرنا"}
+            </p>
           </Col>
         </Row>
       </Container>
       <div className="text-center p-3 bg-secondary">
-        © {new Date().getFullYear()} Your Store. All rights reserved.
+        © {new Date().getFullYear()} Your Store.{" "}
+        {isEnglish ? "All rights reserved." : "كل الحقوق محفوظه"}
       </div>
     </footer>
   );

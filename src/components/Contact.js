@@ -3,8 +3,11 @@ import { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { selectUserData } from "../rtk/slices/userSlice";
+import { selectLanguage } from "../rtk/slices/deflanSlice";
 
 const ContactUs = () => {
+  const isEnglish = useSelector(selectLanguage);
+
   const userData = useSelector(selectUserData);
 
   const [showModal, setShowModal] = useState(false);
@@ -23,10 +26,10 @@ const ContactUs = () => {
 
   return (
     <>
-      <h1>Contact Us</h1>
+      <h1 className="mt-3">{isEnglish ? "Contact Us" : "تواصل معنا"}</h1>
       <Form>
-        <Form.Group controlId="formName">
-          <Form.Label>Name</Form.Label>
+        <Form.Group controlId="formName" className="mt-3">
+          <Form.Label>{isEnglish ? "Name" : "الاسم"}</Form.Label>
           <Form.Control
             type="text"
             placeholder="Enter your name"
@@ -34,8 +37,10 @@ const ContactUs = () => {
           />
         </Form.Group>
 
-        <Form.Group controlId="formContactNumber">
-          <Form.Label>Contact Number</Form.Label>
+        <Form.Group controlId="formContactNumber" className="mt-3">
+          <Form.Label>
+            {isEnglish ? "Contact Number" : "رقم التواصل"}
+          </Form.Label>
           <Form.Control
             type="text"
             placeholder="Enter your contact number"
@@ -44,8 +49,8 @@ const ContactUs = () => {
           />
         </Form.Group>
 
-        <Form.Group controlId="formSocialLinks">
-          <Form.Label>Social Links</Form.Label>
+        <Form.Group controlId="formSocialLinks" className="mt-3">
+          <Form.Label>{isEnglish ? "Social Links" : "اترك حساباتك"}</Form.Label>
           <Form.Control
             type="text"
             placeholder="Enter your social links"
@@ -61,21 +66,24 @@ const ContactUs = () => {
           className="mt-2"
           disabled={isSubmitDisabled}
         >
-          Submit
+          {isEnglish ? "Submit" : "ارسال"}
         </Button>
       </Form>
 
       <Modal show={showModal} onHide={handleCloseModal}>
         <Modal.Header>
-          <Modal.Title>Thanks {name}</Modal.Title>
+          <Modal.Title>
+            {isEnglish ? "Thanks" : "شكرا"}-{name}
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          Your information has been submitted. We will get in touch with you
-          soon.
+          {isEnglish
+            ? "Your information has been submitted. We will get in touch with you soon."
+            : "تم تأكيد بياناتك سوف يتم التواصل معك في اقرب وقت"}
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleCloseModal}>
-            Close
+            {isEnglish ? "Close" : "اغلاق"}
           </Button>
         </Modal.Footer>
       </Modal>

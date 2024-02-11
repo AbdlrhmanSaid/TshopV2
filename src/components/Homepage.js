@@ -64,7 +64,10 @@ export const Homepage = () => {
   return (
     <>
       {loading ? (
-        <div className="spinners d-flex justify-content-center">
+        <div
+          className="spinners d-flex justify-content-center"
+          style={{ marginBottom: "100px" }}
+        >
           <Spinner animation="border m-3" variant="primary" />
           <Spinner animation="border m-3" variant="primary" />
           <Spinner animation="border m-3" variant="primary" />
