@@ -39,7 +39,7 @@ function NavbarApp() {
         expand="lg"
         bg="dark"
         variant="dark"
-        className="border-bottom  border-secondary"
+        className="border-bottom  border-secondary position-sticky top-0"
       >
         <Container>
           <Navbar.Brand href="#home">ShopEmpire</Navbar.Brand>

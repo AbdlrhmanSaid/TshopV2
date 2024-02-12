@@ -76,7 +76,7 @@ export const Homepage = () => {
         </div>
       ) : (
         <>
-          <div className="btns bg-dark  w-100 mb-3 rounded-5 rounded-top-0 p-2 d-flex  align-items-center overflow-hidden flex-wrap shadow justify-content-center">
+          <div className=" btns bg-dark  w-100 mb-3 rounded-5 rounded-top-0 p-2 d-flex shadow align-items-center overflow-hidden flex-wrap shadow justify-content-center">
             <div className="catig-btns text-center" style={{ flex: "1" }}>
               <Button
                 variant="primary"
