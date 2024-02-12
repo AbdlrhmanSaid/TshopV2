@@ -118,12 +118,7 @@ footer {
   display: flex;
   align-items: center;
 }
-.btns {
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  border-radius: 10px;
-}
+
 .categoryName {
   width: -webkit-fit-content;
   width: -moz-fit-content;
@@ -144,6 +139,9 @@ a {
   margin-top: 10px;
 }
 @media (max-width: 767px) {
+  .btns {
+    font-size: 10px;
+  }
   .logbtn {
     margin: 10px 0 0 0;
   }

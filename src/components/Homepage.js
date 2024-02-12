@@ -14,6 +14,8 @@ import { faCartPlus, faLink } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { selectLanguage } from "../rtk/slices/deflanSlice";
 import Swal from "sweetalert2";
+import { Form } from "react-bootstrap";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 export const Homepage = () => {
   const dispatch = useDispatch();
@@ -74,14 +76,11 @@ export const Homepage = () => {
         </div>
       ) : (
         <>
-          <div className="headerMain d-flex mt-3 overflow-hidden">
-            <div
-              className="btns m-3 align-items-center text-center d-flex flex-column"
-              style={{ flex: "0" }}
-            >
+          <div className="btns bg-dark  w-100 mb-3 rounded-5 rounded-top-0 p-2 d-flex  align-items-center overflow-hidden flex-wrap shadow justify-content-center">
+            <div className="catig-btns text-center" style={{ flex: "1" }}>
               <Button
                 variant="primary"
-                className={`mt-3 ${selectedCategory === null ? "active" : ""}`}
+                className={`m-2  ${selectedCategory === null ? "active" : ""}`}
                 onClick={() => setSelectedCategory(null)}
               >
                 All
@@ -90,7 +89,7 @@ export const Homepage = () => {
                 <Button
                   key={index}
                   variant="primary"
-                  className={`mt-3 ${
+                  className={`m-2 ${
                     selectedCategory === category ? "active" : ""
                   }`}
                   onClick={() => setSelectedCategory(category)}
@@ -99,73 +98,95 @@ export const Homepage = () => {
                 </Button>
               ))}
             </div>
-            <Row className="justify-content-center " style={{ flex: "1" }}>
-              <Col xs={12} md={8} className="parent-slide">
-                <div
-                  id="carouselExampleIndicators child-slide"
-                  className="carousel slide"
-                >
-                  <div className="carousel-indicators">
-                    {filteredProducts.map((product, index) => (
-                      <button
-                        key={index}
-                        type="button"
-                        data-bs-target="#carouselExampleIndicators"
-                        data-bs-slide-to={index}
-                        className={index === currentImageIndex ? "active" : ""}
-                        aria-current={index === currentImageIndex ? "true" : ""}
-                        aria-label={`Slide ${index + 1}`}
-                      ></button>
-                    ))}
-                  </div>
-                  <div className="carousel-inner">
-                    {filteredProducts.map((product, index) => (
-                      <div
-                        key={index}
-                        className={`carousel-item ${
-                          index === currentImageIndex ? "active" : ""
-                        }`}
-                      >
-                        <Card className="text-center">
-                          <Card.Img
-                            variant="top"
-                            src={product.image}
-                            alt={`Slide ${index + 1}`}
-                          />
-                        </Card>
-                      </div>
-                    ))}
-                  </div>
-                  <button
-                    className="carousel-control-prev"
-                    type="button"
-                    data-bs-target="#carouselExampleIndicators"
-                    data-bs-slide="prev"
-                    onClick={handlePrev}
-                  >
-                    <span
-                      className="carousel-control-prev-icon"
-                      aria-hidden="true"
-                    ></span>
-                    <span className="visually-hidden">Previous</span>
-                  </button>
-                  <button
-                    className="carousel-control-next"
-                    type="button"
-                    data-bs-target="#carouselExampleIndicators"
-                    data-bs-slide="next"
-                    onClick={handleNext}
-                  >
-                    <span
-                      className="carousel-control-next-icon"
-                      aria-hidden="true"
-                    ></span>
-                    <span className="visually-hidden">Next</span>
-                  </button>
-                </div>
-              </Col>
-            </Row>
+            <Form inline onSubmit={(e) => e.preventDefault()} className="m-2">
+              <Row className="justify-content-center">
+                <Col xs="auto">
+                  <Form.Control
+                    type="text"
+                    placeholder={isEnglish ? "Search" : "بحث"}
+                    className="mr-sm-2"
+                  />
+                </Col>
+                <Col xs="auto">
+                  {isLogin ? (
+                    <Button type="submit">
+                      <FontAwesomeIcon icon={faMagnifyingGlass} />
+                    </Button>
+                  ) : (
+                    <Button type="submit" onClick={() => notLogin()}>
+                      <FontAwesomeIcon icon={faMagnifyingGlass} />
+                    </Button>
+                  )}
+                </Col>
+              </Row>
+            </Form>
           </div>
+          <Row className="justify-content-center" style={{ flex: "1" }}>
+            <Col xs={12} md={8} className="parent-slide">
+              <div
+                id="carouselExampleIndicators child-slide"
+                className="carousel slide"
+              >
+                <div className="carousel-indicators">
+                  {filteredProducts.map((product, index) => (
+                    <button
+                      key={index}
+                      type="button"
+                      data-bs-target="#carouselExampleIndicators"
+                      data-bs-slide-to={index}
+                      className={index === currentImageIndex ? "active" : ""}
+                      aria-current={index === currentImageIndex ? "true" : ""}
+                      aria-label={`Slide ${index + 1}`}
+                    ></button>
+                  ))}
+                </div>
+                <div className="carousel-inner">
+                  {filteredProducts.map((product, index) => (
+                    <div
+                      key={index}
+                      className={`carousel-item ${
+                        index === currentImageIndex ? "active" : ""
+                      }`}
+                    >
+                      <Card className="text-center">
+                        <Card.Img
+                          variant="top"
+                          src={product.image}
+                          alt={`Slide ${index + 1}`}
+                        />
+                      </Card>
+                    </div>
+                  ))}
+                </div>
+                <button
+                  className="carousel-control-prev"
+                  type="button"
+                  data-bs-target="#carouselExampleIndicators"
+                  data-bs-slide="prev"
+                  onClick={handlePrev}
+                >
+                  <span
+                    className="carousel-control-prev-icon"
+                    aria-hidden="true"
+                  ></span>
+                  <span className="visually-hidden">Previous</span>
+                </button>
+                <button
+                  className="carousel-control-next"
+                  type="button"
+                  data-bs-target="#carouselExampleIndicators"
+                  data-bs-slide="next"
+                  onClick={handleNext}
+                >
+                  <span
+                    className="carousel-control-next-icon"
+                    aria-hidden="true"
+                  ></span>
+                  <span className="visually-hidden">Next</span>
+                </button>
+              </div>
+            </Col>
+          </Row>
           <Row xs={1} md={2} lg={2} className="my-3">
             {filteredProducts.map((product) => (
               <Col key={product.id} className="mb-3">

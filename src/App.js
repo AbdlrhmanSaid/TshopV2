@@ -15,7 +15,7 @@ function App() {
   return (
     <div className="App">
       <NavbarApp />
-      <Container>
+      <Container className="bg-light shadow rounded-bottom">
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/Profile" element={<Profile />} />

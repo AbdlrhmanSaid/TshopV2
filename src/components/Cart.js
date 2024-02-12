@@ -81,7 +81,11 @@ export const Cart = () => {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow} className="z-3 cart-icon">
+      <Button
+        variant="primary"
+        onClick={handleShow}
+        className="z-3 cart-icon shadow"
+      >
         <FontAwesomeIcon icon={faCartShopping} />
         <span className="total-length w-25 h-25 "> {cart.length}</span>
       </Button>
@@ -99,11 +103,11 @@ export const Cart = () => {
           <div className="cart">
             <div className="header">
               <h2 className="mb-3">
-                {isEnglish ? "Products" : " عدد المنتجات : "}
+                {isEnglish ? "Products : " : " عدد المنتجات : "}
                 {cart.length}
               </h2>
               <h5>
-                {isEnglish ? "Order Number:" : " طلب رقم : "}
+                {isEnglish ? "Order Number : " : " طلب رقم : "}
                 {randomNum}
               </h5>
               <Button

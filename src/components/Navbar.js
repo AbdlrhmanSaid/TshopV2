@@ -6,17 +6,11 @@ import {
   Container,
   Nav,
   Button,
-  Form,
-  Row,
-  Col,
   NavDropdown,
   Modal,
 } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faMagnifyingGlass,
-  faRightToBracket,
-} from "@fortawesome/free-solid-svg-icons";
+import { faRightToBracket } from "@fortawesome/free-solid-svg-icons";
 import { selectLanguage, setLanguage } from "../rtk/slices/deflanSlice";
 import { clearUserData } from "../rtk/slices/userSlice";
 import Swal from "sweetalert2";
@@ -40,141 +34,125 @@ function NavbarApp() {
   };
 
   return (
-    <Navbar expand="lg" bg="dark" variant="dark">
-      <Container>
-        <Navbar.Brand href="#home">ShopEmpire</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            {isEnglish ? (
+    <>
+      <Navbar
+        expand="lg"
+        bg="dark"
+        variant="dark"
+        className="border-bottom  border-secondary"
+      >
+        <Container>
+          <Navbar.Brand href="#home">ShopEmpire</Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="me-auto">
+              {isEnglish ? (
+                <>
+                  <Link to="/" className="text-decoration-none">
+                    <Nav.Link href="#home">Home</Nav.Link>
+                  </Link>
+                  <Link to="/Profile" className="text-decoration-none">
+                    <Nav.Link href="#Profile">Profile</Nav.Link>
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <Link to="/" className="text-decoration-none">
+                    <Nav.Link href="#home">الرئيسية</Nav.Link>
+                  </Link>
+                  <Link to="/Profile" className="text-decoration-none">
+                    <Nav.Link href="#Profile">الصفحة الشخصية</Nav.Link>
+                  </Link>
+                </>
+              )}
+              <NavDropdown
+                title={isEnglish ? "More" : "المزيد"}
+                id="basic-nav-dropdown"
+              >
+                <Link to="/Settings" className="text-decoration-none">
+                  <NavDropdown.Item href="#Settings">
+                    {isEnglish ? "Settings" : "الاعدادات"}
+                  </NavDropdown.Item>
+                </Link>
+                <Link to="/Orders" className="text-decoration-none">
+                  <NavDropdown.Item href="#Orders">
+                    {isEnglish ? "Orders" : "الطلبات"}
+                  </NavDropdown.Item>
+                </Link>
+                <Link to="/Contact" className="text-decoration-none">
+                  <NavDropdown.Item href="#Contact">
+                    {isEnglish ? "Contact Us" : "تواصل معنا"}
+                  </NavDropdown.Item>
+                </Link>
+              </NavDropdown>
+              <NavDropdown
+                title={isEnglish ? "Language" : "اللغة"}
+                id="basic-nav-dropdown"
+              >
+                <NavDropdown.Item onClick={() => handleLanguageChange(true)}>
+                  English
+                </NavDropdown.Item>
+                <NavDropdown.Item onClick={() => handleLanguageChange(false)}>
+                  العربية
+                </NavDropdown.Item>
+              </NavDropdown>
+            </Nav>
+            {isLogin ? (
               <>
-                <Link to="/" className="text-decoration-none">
-                  <Nav.Link href="#home">Home</Nav.Link>
-                </Link>
-                <Link to="/Profile" className="text-decoration-none">
-                  <Nav.Link href="#Profile">Profile</Nav.Link>
-                </Link>
+                <Button
+                  variant="primary"
+                  onClick={handleShowLogout}
+                  className="ms-3 logbtn"
+                >
+                  {isEnglish ? "Log Out" : " سجل الخروج"}
+                  <FontAwesomeIcon
+                    className="ms-1"
+                    icon={faRightToBracket}
+                  />{" "}
+                </Button>
+                {isEnglish ? (
+                  <Modal show={show} onHide={handleCloseLogout}>
+                    <Modal.Header>
+                      <Modal.Title>Logout Confirmation</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>Are you sure you want to logout?</Modal.Body>
+                    <Modal.Footer>
+                      <Button variant="secondary" onClick={handleCloseLogout}>
+                        Cancel
+                      </Button>
+                      <Button variant="primary" onClick={handleLogout}>
+                        Logout
+                      </Button>
+                    </Modal.Footer>
+                  </Modal>
+                ) : (
+                  <Modal show={show} onHide={handleCloseLogout}>
+                    <Modal.Header>
+                      <Modal.Title>تأكيد تسجيل الخروج</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>هل انت متأكد من تسجيل الخروج؟</Modal.Body>
+                    <Modal.Footer>
+                      <Button variant="secondary" onClick={handleCloseLogout}>
+                        الغاء
+                      </Button>
+                      <Button variant="primary" onClick={handleLogout}>
+                        نعم
+                      </Button>
+                    </Modal.Footer>
+                  </Modal>
+                )}
               </>
             ) : (
-              <>
-                <Link to="/" className="text-decoration-none">
-                  <Nav.Link href="#home">الرئيسية</Nav.Link>
-                </Link>
-                <Link to="/Profile" className="text-decoration-none">
-                  <Nav.Link href="#Profile">الصفحة الشخصية</Nav.Link>
-                </Link>
-              </>
+              <Link to="/Login" className="ms-3">
+                <Button variant="primary logbtn">
+                  {isEnglish ? "Log in" : " سجل الدخول"}
+                </Button>
+              </Link>
             )}
-            <NavDropdown
-              title={isEnglish ? "More" : "المزيد"}
-              id="basic-nav-dropdown"
-            >
-              <Link to="/Settings" className="text-decoration-none">
-                <NavDropdown.Item href="#Settings">
-                  {isEnglish ? "Settings" : "الاعدادات"}
-                </NavDropdown.Item>
-              </Link>
-              <Link to="/Orders" className="text-decoration-none">
-                <NavDropdown.Item href="#Orders">
-                  {isEnglish ? "Orders" : "الطلبات"}
-                </NavDropdown.Item>
-              </Link>
-              <Link to="/Contact" className="text-decoration-none">
-                <NavDropdown.Item href="#Contact">
-                  {isEnglish ? "Contact Us" : "تواصل معنا"}
-                </NavDropdown.Item>
-              </Link>
-            </NavDropdown>
-            <NavDropdown
-              title={isEnglish ? "Language" : "اللغة"}
-              id="basic-nav-dropdown"
-            >
-              <NavDropdown.Item onClick={() => handleLanguageChange(true)}>
-                English
-              </NavDropdown.Item>
-              <NavDropdown.Item onClick={() => handleLanguageChange(false)}>
-                العربية
-              </NavDropdown.Item>
-            </NavDropdown>
-          </Nav>
-          <Form inline onSubmit={(e) => e.preventDefault()}>
-            <Row className="justify-content-center">
-              <Col xs="auto">
-                <Form.Control
-                  type="text"
-                  placeholder={isEnglish ? "Search" : "بحث"}
-                  className="mr-sm-2"
-                />
-              </Col>
-              <Col xs="auto">
-                {isLogin ? (
-                  <Button type="submit">
-                    <FontAwesomeIcon icon={faMagnifyingGlass} />
-                    {/* اريد عند الضغط علي هذا الزر  */}
-                  </Button>
-                ) : (
-                  <Button type="submit" onClick={() => notLogin()}>
-                    <FontAwesomeIcon icon={faMagnifyingGlass} />
-                  </Button>
-                )}
-              </Col>
-            </Row>
-          </Form>
-          {isLogin ? (
-            <>
-              <Button
-                variant="primary"
-                onClick={handleShowLogout}
-                className="ms-3 logbtn"
-              >
-                {isEnglish ? "Log Out" : " سجل الخروج"}
-                <FontAwesomeIcon
-                  className="ms-1"
-                  icon={faRightToBracket}
-                />{" "}
-              </Button>
-              {isEnglish ? (
-                <Modal show={show} onHide={handleCloseLogout}>
-                  <Modal.Header>
-                    <Modal.Title>Logout Confirmation</Modal.Title>
-                  </Modal.Header>
-                  <Modal.Body>Are you sure you want to logout?</Modal.Body>
-                  <Modal.Footer>
-                    <Button variant="secondary" onClick={handleCloseLogout}>
-                      Cancel
-                    </Button>
-                    <Button variant="primary" onClick={handleLogout}>
-                      Logout
-                    </Button>
-                  </Modal.Footer>
-                </Modal>
-              ) : (
-                <Modal show={show} onHide={handleCloseLogout}>
-                  <Modal.Header>
-                    <Modal.Title>تأكيد تسجيل الخروج</Modal.Title>
-                  </Modal.Header>
-                  <Modal.Body>هل انت متأكد من تسجيل الخروج؟</Modal.Body>
-                  <Modal.Footer>
-                    <Button variant="secondary" onClick={handleCloseLogout}>
-                      الغاء
-                    </Button>
-                    <Button variant="primary" onClick={handleLogout}>
-                      نعم
-                    </Button>
-                  </Modal.Footer>
-                </Modal>
-              )}
-            </>
-          ) : (
-            <Link to="/Login" className="ms-3">
-              <Button variant="primary logbtn">
-                {isEnglish ? "Log in" : " سجل الدخول"}
-              </Button>
-            </Link>
-          )}
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+    </>
   );
   function notLogin() {
     if (isEnglish) {
