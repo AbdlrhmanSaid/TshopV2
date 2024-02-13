@@ -78,7 +78,7 @@ const Profile = () => {
           </div>
         </div>
       ) : (
-        <div className="m-5">
+        <div className="m-5 p-5">
           <Alert variant="danger" style={{ margin: "15% 0" }}>
             <Alert.Heading>
               {isEnglish ? " Please Login First" : "سجل الدخول اولا"}

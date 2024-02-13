@@ -10,7 +10,11 @@ import {
   Modal,
 } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faRightToBracket } from "@fortawesome/free-solid-svg-icons";
+import {
+  faRightToBracket,
+  faAngleLeft,
+  faAngleRight,
+} from "@fortawesome/free-solid-svg-icons";
 import { selectLanguage, setLanguage } from "../rtk/slices/deflanSlice";
 import { clearUserData } from "../rtk/slices/userSlice";
 import Swal from "sweetalert2";
@@ -79,6 +83,11 @@ function NavbarApp() {
                     {isEnglish ? "Orders" : "الطلبات"}
                   </NavDropdown.Item>
                 </Link>
+                <Link to="/Favorites" className="text-decoration-none">
+                  <NavDropdown.Item href="#Favorites">
+                    {isEnglish ? "Favorites" : "المفضلة"}
+                  </NavDropdown.Item>
+                </Link>
                 <Link to="/Contact" className="text-decoration-none">
                   <NavDropdown.Item href="#Contact">
                     {isEnglish ? "Contact Us" : "تواصل معنا"}
@@ -104,7 +113,7 @@ function NavbarApp() {
                   onClick={handleShowLogout}
                   className="ms-3 logbtn"
                 >
-                  {isEnglish ? "Log Out" : " سجل الخروج"}
+                  {isEnglish ? `Log Out` : ` سجل الخروج`}
                   <FontAwesomeIcon
                     className="ms-1"
                     icon={faRightToBracket}
@@ -145,7 +154,8 @@ function NavbarApp() {
             ) : (
               <Link to="/Login" className="ms-3">
                 <Button variant="primary logbtn">
-                  {isEnglish ? "Log in" : " سجل الدخول"}
+                  {isEnglish ? "Log In" : "سجل الدخول"}
+                  <FontAwesomeIcon icon={faAngleRight} className="mx-1" />
                 </Button>
               </Link>
             )}

@@ -67,16 +67,35 @@ export const Cart = () => {
   };
 
   const showCancelAlert = () => {
-    Swal.fire({
-      title: "Cancel?",
-      icon: "error",
-      showCancelButton: true,
-      confirmButtonText: "OK",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        window.location.href = "/";
-      }
-    });
+    {
+      isEnglish ? (
+        <>
+          {Swal.fire({
+            title: "Cancel?",
+            icon: "error",
+            showCancelButton: true,
+            confirmButtonText: "OK",
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.location.href = "/";
+            }
+          })}
+        </>
+      ) : (
+        <>
+          {Swal.fire({
+            title: "الغاء?",
+            icon: "error",
+            showCancelButton: true,
+            confirmButtonText: "OK",
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.location.href = "/";
+            }
+          })}
+        </>
+      );
+    }
   };
 
   return (
@@ -106,7 +125,7 @@ export const Cart = () => {
                 {isEnglish ? "Products : " : " عدد المنتجات : "}
                 {cart.length}
               </h2>
-              <h5>
+              <h5 className="my-3">
                 {isEnglish ? "Order Number : " : " طلب رقم : "}
                 {randomNum}
               </h5>
@@ -119,27 +138,8 @@ export const Cart = () => {
               </Button>
             </div>
             <div className="products h-50 px-3">
-              <div className="catch">
+              <div className="catch mt-3">
                 <Table striped bordered hover>
-                  <thead>
-                    <tr>
-                      {isEnglish ? (
-                        <>
-                          <th>Image</th>
-                          <th>Price</th>
-                          <th>Quantity</th>
-                          <th>Action</th>
-                        </>
-                      ) : (
-                        <>
-                          <th>الصوره</th>
-                          <th>السعر</th>
-                          <th>الكمية</th>
-                          <th>ازالة</th>
-                        </>
-                      )}
-                    </tr>
-                  </thead>
                   <tbody>
                     {cart.map((product, index) => (
                       <tr key={index} className="my-1">

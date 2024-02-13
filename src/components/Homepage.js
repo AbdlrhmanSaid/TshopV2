@@ -8,14 +8,19 @@ import Spinner from "react-bootstrap/Spinner";
 import Image from "react-bootstrap/Image";
 import { fetchProducts } from "../rtk/slices/productSlice";
 import { addToCart } from "../rtk/slices/cartSlice";
+import { addToFav } from "../rtk/slices/favSlice";
 import { Cart } from "./Cart";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartPlus, faLink } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { selectLanguage } from "../rtk/slices/deflanSlice";
 import Swal from "sweetalert2";
 import { Form } from "react-bootstrap";
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import {
+  faMagnifyingGlass,
+  faHeart,
+  faArrowUpRightFromSquare,
+  faCartPlus,
+} from "@fortawesome/free-solid-svg-icons";
 
 export const Homepage = () => {
   const dispatch = useDispatch();
@@ -67,7 +72,7 @@ export const Homepage = () => {
     <>
       {loading ? (
         <div
-          className="spinners d-flex justify-content-center"
+          className="spinners d-flex justify-content-center m-5 p-5"
           style={{ marginBottom: "100px" }}
         >
           <Spinner animation="border m-3" variant="primary" />
@@ -76,7 +81,7 @@ export const Homepage = () => {
         </div>
       ) : (
         <>
-          <div className=" btns bg-dark  w-100 mb-3 rounded-5 rounded-top-0 p-2 d-flex shadow align-items-center overflow-hidden flex-wrap shadow justify-content-center">
+          <div className=" btns bg-dark  w-100 mb-3  p-2 d-flex shadow align-items-center overflow-hidden flex-wrap shadow justify-content-center">
             <div className="catig-btns text-center" style={{ flex: "1" }}>
               <Button
                 variant="primary"
@@ -187,49 +192,67 @@ export const Homepage = () => {
               </div>
             </Col>
           </Row>
-          <Row xs={1} md={2} lg={2} className="my-3">
+          <Row xs={1} md={2} lg={2} className="m-3">
             {filteredProducts.map((product) => (
               <Col key={product.id} className="mb-3">
-                <div className="box shadow rounded w-100 h-100 border overflow-hidden d-flex justify-content-between">
+                <div className="box  shadow rounded w-100 h-100 border overflow-hidden ">
+                  <div className="half2 d-flex justify-content-evenly flex-column rounded-end bg-dark p-3 ">
+                    <div className="headerHalf2 d-flex align-items-center justify-content-between ">
+                      <div className="info text-light">
+                        <p>{product.title}</p>
+                      </div>
+                      <div className="btnsAction d-flex gap-3 justify-content-end">
+                        {isLogin ? (
+                          <>
+                            <Button
+                              variant="primary"
+                              onClick={() => dispatch(addToCart(product))}
+                              className="rounded-circle"
+                            >
+                              <FontAwesomeIcon icon={faCartPlus} />
+                            </Button>
+                            <Button
+                              variant="danger"
+                              onClick={() => dispatch(addToFav(product))}
+                              className="rounded-circle"
+                            >
+                              <FontAwesomeIcon icon={faHeart} />
+                            </Button>
+                          </>
+                        ) : (
+                          <>
+                            <Button
+                              variant="primary"
+                              onClick={() => notLogin()}
+                              className="rounded-circle"
+                            >
+                              <FontAwesomeIcon icon={faCartPlus} />
+                            </Button>
+                            <Button
+                              variant="danger"
+                              onClick={() => notLogin()}
+                              className="rounded-circle"
+                            >
+                              <FontAwesomeIcon icon={faHeart} />
+                            </Button>
+                          </>
+                        )}
+
+                        <Link to={`/Product/${product.id}`}>
+                          <Button variant="success" className="rounded-circle">
+                            <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
+                          </Button>
+                        </Link>
+                      </div>
+                    </div>
+                    <p className="text-white">${product.price}</p>
+                  </div>
                   <div className="half1 m-auto p-3 w-50">
                     <Image
                       src={product.image}
                       className="w-100 h-100  "
                       rounded
                     />
-                  </div>
-                  <div className="half2 d-flex justify-content-evenly flex-column rounded-end bg-dark p-3 ">
-                    <div className="info text-white">
-                      <p>{product.title}</p>
-                      {isEnglish ? (
-                        <p>Price: ${product.price}</p>
-                      ) : (
-                        <p>السعر: ${product.price}</p>
-                      )}
-                    </div>
-                    <div className="btnsAction d-flex gap-3 justify-content-evenly">
-                      {isLogin ? (
-                        <Button
-                          variant="primary"
-                          onClick={() => dispatch(addToCart(product))}
-                        >
-                          {isEnglish ? `Add ` : `اضف `}{" "}
-                          <FontAwesomeIcon icon={faCartPlus} />
-                        </Button>
-                      ) : (
-                        <Button variant="primary" onClick={() => notLogin()}>
-                          {isEnglish ? `Add ` : `اضف `}{" "}
-                          <FontAwesomeIcon icon={faCartPlus} />
-                        </Button>
-                      )}
-
-                      <Link to={`/Product/${product.id}`}>
-                        <Button variant="success">
-                          {isEnglish ? `View ` : `رؤية `}{" "}
-                          <FontAwesomeIcon icon={faLink} />
-                        </Button>
-                      </Link>
-                    </div>
                   </div>
                 </div>
               </Col>

@@ -11,11 +11,12 @@ import Profile from "./components/Profile";
 import SettingsPage from "./components/Settings";
 import ContactUs from "./components/Contact";
 import Orders from "./components/Orders";
+import Favorites from "./components/Favorites";
 function App() {
   return (
     <div className="App">
       <NavbarApp />
-      <Container className="bg-light shadow rounded-bottom p-3 pt-0">
+      <Container className="bg-light shadow rounded-bottom p-0 ">
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/Profile" element={<Profile />} />
@@ -25,6 +26,7 @@ function App() {
           <Route path="/Settings" element={<SettingsPage />} />
           <Route path="/Contact" element={<ContactUs />} />
           <Route path="/Product/:productId" element={<Viewprod />} />
+          <Route path="/Favorites" element={<Favorites />} />
         </Routes>
       </Container>
       <Footer />
