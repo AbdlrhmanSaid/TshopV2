@@ -114,7 +114,7 @@ function NavbarApp() {
               <>
                 <div className="details text-white d-flex align-items-center ">
                   <FontAwesomeIcon icon={faUser} className="mx-2" />
-                  <p className="">{userData.username}</p>
+                  <p className="m-0">{userData.username}</p>
                 </div>
                 <Button
                   variant="primary"
