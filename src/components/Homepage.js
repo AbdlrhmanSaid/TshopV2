@@ -28,9 +28,9 @@ export const Homepage = () => {
   const isLogin = useSelector((state) => state.user.isLogin);
 
   const products = useSelector((state) => state.products);
-  const [selectedCategory, setSelectedCategory] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [currentImages, setCurrentImages] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -47,6 +47,10 @@ export const Homepage = () => {
     fetchData();
   }, [dispatch]);
 
+  useEffect(() => {
+    setCurrentImages(products.map((product) => product.image));
+  }, [products]);
+
   const uniqueCategories = Array.from(
     new Set(products.map((product) => product.category))
   );
@@ -56,24 +60,22 @@ export const Homepage = () => {
     : products;
 
   const handleNext = () => {
-    setCurrentImageIndex(
-      (prevIndex) => (prevIndex + 1) % filteredProducts.length
-    );
+    setCurrentImages((prevImages) => [...prevImages.slice(1), prevImages[0]]);
   };
 
   const handlePrev = () => {
-    setCurrentImageIndex(
-      (prevIndex) =>
-        (prevIndex - 1 + filteredProducts.length) % filteredProducts.length
-    );
+    setCurrentImages((prevImages) => [
+      prevImages[prevImages.length - 1],
+      ...prevImages.slice(0, prevImages.length - 1),
+    ]);
   };
 
   return (
     <>
       {loading ? (
         <div
-          className="spinners d-flex justify-content-center m-5 p-5"
-          style={{ marginBottom: "100px" }}
+          className="spinners d-flex justify-content-center "
+          style={{ margin: "130px auto 100px auto" }}
         >
           <Spinner animation="border m-3" variant="primary" />
           <Spinner animation="border m-3" variant="primary" />
@@ -81,7 +83,7 @@ export const Homepage = () => {
         </div>
       ) : (
         <>
-          <div className=" btns bg-dark  w-100 mb-3  p-2 d-flex shadow align-items-center overflow-hidden flex-wrap shadow justify-content-center">
+          <div className="btns bg-dark  w-100 mb-3  p-2 d-flex shadow align-items-center overflow-hidden flex-wrap shadow justify-content-center">
             <div className="catig-btns text-center" style={{ flex: "1" }}>
               <Button
                 variant="primary"
@@ -133,30 +135,28 @@ export const Homepage = () => {
                 className="carousel slide"
               >
                 <div className="carousel-indicators">
-                  {filteredProducts.map((product, index) => (
+                  {currentImages.map((image, index) => (
                     <button
                       key={index}
                       type="button"
                       data-bs-target="#carouselExampleIndicators"
                       data-bs-slide-to={index}
-                      className={index === currentImageIndex ? "active" : ""}
-                      aria-current={index === currentImageIndex ? "true" : ""}
+                      className={index === 0 ? "active" : ""}
+                      aria-current={index === 0 ? "true" : ""}
                       aria-label={`Slide ${index + 1}`}
                     ></button>
                   ))}
                 </div>
                 <div className="carousel-inner">
-                  {filteredProducts.map((product, index) => (
+                  {currentImages.map((image, index) => (
                     <div
                       key={index}
-                      className={`carousel-item ${
-                        index === currentImageIndex ? "active" : ""
-                      }`}
+                      className={`carousel-item ${index === 0 ? "active" : ""}`}
                     >
                       <Card className="text-center">
                         <Card.Img
                           variant="top"
-                          src={product.image}
+                          src={image}
                           alt={`Slide ${index + 1}`}
                         />
                       </Card>
@@ -192,7 +192,7 @@ export const Homepage = () => {
               </div>
             </Col>
           </Row>
-          <Row xs={1} md={2} lg={2} className="m-3">
+          <Row xs={1} md={2} lg={3} className="m-3">
             {filteredProducts.map((product) => (
               <Col key={product.id} className="mb-3">
                 <div className="box  shadow rounded w-100 h-100 border overflow-hidden ">
@@ -201,7 +201,7 @@ export const Homepage = () => {
                       <div className="info text-light">
                         <p>{product.title}</p>
                       </div>
-                      <div className="btnsAction d-flex gap-3 justify-content-end">
+                      <div className="btnsAction d-flex gap-1 justify-content-end">
                         {isLogin ? (
                           <>
                             <Button
@@ -213,7 +213,7 @@ export const Homepage = () => {
                             </Button>
                             <Button
                               variant="danger"
-                              onClick={() => dispatch(addToFav(product))}
+                              onClick={() => addedToFev(product)}
                               className="rounded-circle"
                             >
                               <FontAwesomeIcon icon={faHeart} />
@@ -237,7 +237,6 @@ export const Homepage = () => {
                             </Button>
                           </>
                         )}
-
                         <Link to={`/Product/${product.id}`}>
                           <Button variant="success" className="rounded-circle">
                             <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
@@ -286,6 +285,26 @@ export const Homepage = () => {
     `,
         showConfirmButton: false,
       });
+    }
+  }
+  function addedToFev(product) {
+    dispatch(addToFav(product));
+    {
+      isEnglish ? (
+        <>
+          {Swal.fire({
+            title: "Added to favorites.",
+            icon: "success",
+          })}
+        </>
+      ) : (
+        <>
+          {Swal.fire({
+            title: "تم الاضافة الي المفضلة",
+            icon: "success",
+          })}
+        </>
+      );
     }
   }
 };

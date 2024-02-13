@@ -14,12 +14,16 @@ import {
   faRightToBracket,
   faAngleLeft,
   faAngleRight,
+  faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { selectLanguage, setLanguage } from "../rtk/slices/deflanSlice";
 import { clearUserData } from "../rtk/slices/userSlice";
 import Swal from "sweetalert2";
+import { selectUserData } from "../rtk/slices/userSlice";
 
 function NavbarApp() {
+  const userData = useSelector(selectUserData);
+
   const isEnglish = useSelector(selectLanguage);
   const dispatch = useDispatch();
   const [show, setShow] = useState(false);
@@ -108,16 +112,16 @@ function NavbarApp() {
             </Nav>
             {isLogin ? (
               <>
+                <div className="details text-white d-flex align-items-center ">
+                  <FontAwesomeIcon icon={faUser} className="mx-2" />
+                  <p className="">{userData.username}</p>
+                </div>
                 <Button
                   variant="primary"
                   onClick={handleShowLogout}
                   className="ms-3 logbtn"
                 >
-                  {isEnglish ? `Log Out` : ` سجل الخروج`}
-                  <FontAwesomeIcon
-                    className="ms-1"
-                    icon={faRightToBracket}
-                  />{" "}
+                  <FontAwesomeIcon className="" icon={faRightToBracket} />{" "}
                 </Button>
                 {isEnglish ? (
                   <Modal show={show} onHide={handleCloseLogout}>
