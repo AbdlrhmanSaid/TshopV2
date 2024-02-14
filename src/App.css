@@ -36,6 +36,17 @@ nav .searchArea,
 nav .searchbtn {
   cursor: pointer;
 }
+
+.side-btn {
+  height: fit-content;
+  position: fixed;
+  right: 1%;
+  top: 11%;
+}
+.offcanvas-header {
+  flex-direction: row-reverse;
+}
+
 .main .footer {
   justify-content: space-around;
   align-items: center;

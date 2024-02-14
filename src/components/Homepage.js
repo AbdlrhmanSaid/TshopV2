@@ -20,7 +20,10 @@ import {
   faHeart,
   faArrowUpRightFromSquare,
   faCartPlus,
+  faBars,
+  faChevronLeft,
 } from "@fortawesome/free-solid-svg-icons";
+import Offcanvas from "react-bootstrap/Offcanvas";
 
 export const Homepage = () => {
   const dispatch = useDispatch();
@@ -70,41 +73,27 @@ export const Homepage = () => {
     ]);
   };
 
-  return (
-    <>
-      {loading ? (
-        <div
-          className="spinners d-flex justify-content-center "
-          style={{ margin: "130px auto 100px auto" }}
+  const OffCanvasExample = ({ name, ...props }) => {
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+    return (
+      <>
+        <Button variant="primary" onClick={handleShow} className="side-btn">
+          <FontAwesomeIcon icon={faBars} />
+        </Button>
+        <Offcanvas
+          show={show}
+          onHide={handleClose}
+          {...props}
+          className="bg-dark"
         >
-          <Spinner animation="border m-3" variant="primary" />
-          <Spinner animation="border m-3" variant="primary" />
-          <Spinner animation="border m-3" variant="primary" />
-        </div>
-      ) : (
-        <>
-          <div className="btns bg-dark  w-100 mb-3  p-2 d-flex shadow align-items-center overflow-hidden flex-wrap shadow justify-content-center">
-            <div className="catig-btns text-center" style={{ flex: "1" }}>
-              <Button
-                variant="primary"
-                className={`m-2  ${selectedCategory === null ? "active" : ""}`}
-                onClick={() => setSelectedCategory(null)}
-              >
-                All
-              </Button>
-              {uniqueCategories.map((category, index) => (
-                <Button
-                  key={index}
-                  variant="primary"
-                  className={`m-2 ${
-                    selectedCategory === category ? "active" : ""
-                  }`}
-                  onClick={() => setSelectedCategory(category)}
-                >
-                  {category}
-                </Button>
-              ))}
-            </div>
+          <Offcanvas.Header closeButton className="text-white">
+            <Offcanvas.Title>Menu</Offcanvas.Title>
+          </Offcanvas.Header>
+          <Offcanvas.Body>
             <Form inline onSubmit={(e) => e.preventDefault()} className="m-2">
               <Row className="justify-content-center">
                 <Col xs="auto">
@@ -127,8 +116,111 @@ export const Homepage = () => {
                 </Col>
               </Row>
             </Form>
-          </div>
-          <Row className="justify-content-center" style={{ flex: "1" }}>
+            <div className="btns w-100 mb-3  p-2 d-flex flex-column">
+              <div className="catig-btns text-center d-flex flex-column">
+                <Button
+                  className={`m-2 d-flex justify-content-around align-items-center ${
+                    selectedCategory === null ? "active" : ""
+                  }`}
+                  onClick={() => setSelectedCategory(null)}
+                >
+                  <FontAwesomeIcon icon={faChevronLeft} />
+                  <p className="m-0 w-50">All</p>
+                </Button>
+                {uniqueCategories.map((category, index) => (
+                  <Button
+                    key={index}
+                    variant="primary"
+                    className={`m-2 d-flex justify-content-around align-items-center ${
+                      selectedCategory === category ? "active" : ""
+                    }`}
+                    onClick={() => setSelectedCategory(category)}
+                  >
+                    <FontAwesomeIcon icon={faChevronLeft} />
+                    <p className="m-0 w-50">{category}</p>
+                  </Button>
+                ))}
+              </div>
+            </div>
+          </Offcanvas.Body>
+        </Offcanvas>
+      </>
+    );
+  };
+
+  const Example = () => {
+    return (
+      <>
+        {["end"].map((placement, idx) => (
+          <OffCanvasExample key={idx} placement={placement} name={placement} />
+        ))}
+      </>
+    );
+  };
+
+  function notLogin() {
+    if (isEnglish) {
+      Swal.fire({
+        title: "<strong>Please Login First</strong>",
+        icon: "error",
+        html: `
+      <a href="/Login">
+      <button type="button" class="btn btn-primary">Log In</button>
+      </a>
+    `,
+        showConfirmButton: false,
+      });
+    } else {
+      Swal.fire({
+        title: "<strong>من فضلك سجل اولا</strong>",
+        icon: "error",
+        html: `
+      <a href="/Login">
+      <button type="button" class="btn btn-primary">تسجيل الدخول</button>
+      </a>
+    `,
+        showConfirmButton: false,
+      });
+    }
+  }
+  function addedToFev(product) {
+    dispatch(addToFav(product));
+    {
+      isEnglish ? (
+        <>
+          {Swal.fire({
+            title: "Added to favorites.",
+            icon: "success",
+          })}
+        </>
+      ) : (
+        <>
+          {Swal.fire({
+            title: "تم الاضافة الي المفضلة",
+            icon: "success",
+          })}
+        </>
+      );
+    }
+  }
+
+  return (
+    <>
+      {loading ? (
+        <div
+          className="spinners d-flex justify-content-center "
+          style={{ margin: "130px auto 100px auto" }}
+        >
+          <Spinner animation="border m-3" variant="primary" />
+          <Spinner animation="border m-3" variant="primary" />
+          <Spinner animation="border m-3" variant="primary" />
+        </div>
+      ) : (
+        <>
+          <h2 className="m-2">
+            {isEnglish ? " Best seller :" : " الاكثر مبيعا :"}
+          </h2>
+          <Row className="justify-content-center mt-3" style={{ flex: "1" }}>
             <Col xs={12} md={8} className="parent-slide">
               <div
                 id="carouselExampleIndicators child-slide"
@@ -192,6 +284,10 @@ export const Homepage = () => {
               </div>
             </Col>
           </Row>
+          <h2 className="m-2">
+            {isEnglish ? " Products categories :" : "  فئات المنتجات :"}
+          </h2>
+
           <Row xs={1} md={2} lg={3} className="m-3">
             {filteredProducts.map((product) => (
               <Col key={product.id} className="mb-3">
@@ -260,51 +356,7 @@ export const Homepage = () => {
         </>
       )}
       <Cart />
+      <Example />
     </>
   );
-  function notLogin() {
-    if (isEnglish) {
-      Swal.fire({
-        title: "<strong>Please Login First</strong>",
-        icon: "error",
-        html: `
-      <a href="/Login">
-      <button type="button" class="btn btn-primary">Log In</button>
-      </a>
-    `,
-        showConfirmButton: false,
-      });
-    } else {
-      Swal.fire({
-        title: "<strong>من فضلك سجل اولا</strong>",
-        icon: "error",
-        html: `
-      <a href="/Login">
-      <button type="button" class="btn btn-primary">تسجيل الدخول</button>
-      </a>
-    `,
-        showConfirmButton: false,
-      });
-    }
-  }
-  function addedToFev(product) {
-    dispatch(addToFav(product));
-    {
-      isEnglish ? (
-        <>
-          {Swal.fire({
-            title: "Added to favorites.",
-            icon: "success",
-          })}
-        </>
-      ) : (
-        <>
-          {Swal.fire({
-            title: "تم الاضافة الي المفضلة",
-            icon: "success",
-          })}
-        </>
-      );
-    }
-  }
 };
