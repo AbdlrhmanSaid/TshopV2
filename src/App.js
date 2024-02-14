@@ -3,7 +3,6 @@ import NavbarApp from "./components/Navbar";
 import { Login } from "./components/Login";
 import { Homepage } from "./components/Homepage";
 import { Routes, Route } from "react-router-dom";
-import { Container } from "react-bootstrap";
 import Footer from "./components/Footer";
 import Viewprod from "./components/Viewprod";
 import Signup from "./components/Signup";
@@ -16,7 +15,7 @@ function App() {
   return (
     <div className="App">
       <NavbarApp />
-      <Container className="bg-light shadow rounded-bottom p-0 ">
+      <div className="bg-light shadow rounded-bottom overflow-hidden p-0 ">
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/Profile" element={<Profile />} />
@@ -28,7 +27,7 @@ function App() {
           <Route path="/Product/:productId" element={<Viewprod />} />
           <Route path="/Favorites" element={<Favorites />} />
         </Routes>
-      </Container>
+      </div>
       <Footer />
     </div>
   );

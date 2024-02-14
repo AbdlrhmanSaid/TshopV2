@@ -12,7 +12,7 @@ import {
   faTimes,
   faEnvelope,
 } from "@fortawesome/free-solid-svg-icons";
-import { Button } from "react-bootstrap";
+import { Button, Alert } from "react-bootstrap";
 import { selectUserData, setUserData } from "../rtk/slices/userSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
@@ -86,6 +86,12 @@ const Signup = () => {
   const [age, setAge] = useState(userData.age);
   const [phoneNumber, setPhoneNumber] = useState(userData.phone);
   const [email, setEmail] = useState(userData.email);
+  const [nameError, setNameError] = useState("");
+  const [addressError, setAddressError] = useState("");
+  const [cityOptionError, setCityOptionError] = useState("");
+  const [ageError, setAgeError] = useState("");
+  const [phoneNumberError, setPhoneNumberError] = useState("");
+  const [emailError, setEmailError] = useState("");
 
   const handleCityChange = (city) => {
     setSelectedCity(city);
@@ -119,6 +125,54 @@ const Signup = () => {
   );
 
   const handleSave = () => {
+    // Reset errors
+    setNameError("");
+    setAddressError("");
+    setCityOptionError("");
+    setAgeError("");
+    setPhoneNumberError("");
+    setEmailError("");
+
+    // Check for errors
+    let hasError = false;
+    if (!name) {
+      setNameError(isEnglish ? "Please enter your name" : "يرجى إدخال الاسم");
+      hasError = true;
+    }
+    if (!address) {
+      setAddressError(
+        isEnglish ? "Please enter your address" : "يرجى إدخال العنوان"
+      );
+      hasError = true;
+    }
+    if (!selectedCityOption) {
+      setCityOptionError(
+        isEnglish ? "Please select a city option" : "يرجى تحديد خيار المدينة"
+      );
+      hasError = true;
+    }
+    if (!age) {
+      setAgeError(isEnglish ? "Please enter your age" : "يرجى إدخال العمر");
+      hasError = true;
+    }
+    if (!phoneNumber) {
+      setPhoneNumberError(
+        isEnglish ? "Please enter your phone number" : "يرجى إدخال رقم هاتفك"
+      );
+      hasError = true;
+    }
+    if (!email) {
+      setEmailError(
+        isEnglish ? "Please enter your email" : "يرجى إدخال بريدك الإلكتروني"
+      );
+      hasError = true;
+    }
+
+    if (hasError) {
+      return;
+    }
+
+    // Dispatch action to save user data
     dispatch(
       setUserData({
         username: name,
@@ -153,6 +207,7 @@ const Signup = () => {
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
+            {nameError && <div className="text-danger">{nameError}</div>}
           </div>
 
           {/* City */}
@@ -177,6 +232,9 @@ const Signup = () => {
 
           {/* City Options */}
           {selectedCity && renderCityOptions()}
+          {cityOptionError && (
+            <div className="text-danger">{cityOptionError}</div>
+          )}
 
           {/* Address */}
           <div className="form-group">
@@ -191,6 +249,7 @@ const Signup = () => {
               value={`${address}`}
               onChange={(e) => setAddress(e.target.value)}
             />
+            {addressError && <div className="text-danger">{addressError}</div>}
           </div>
 
           {/* Age */}
@@ -206,6 +265,7 @@ const Signup = () => {
               value={age}
               onChange={(e) => setAge(e.target.value)}
             />
+            {ageError && <div className="text-danger">{ageError}</div>}
           </div>
 
           {/* Phone Number */}
@@ -220,7 +280,12 @@ const Signup = () => {
               id="phoneNumber"
               value={phoneNumber}
               onChange={(e) => setPhoneNumber(e.target.value)}
+              minLength={11}
+              maxLength={11}
             />
+            {phoneNumberError && (
+              <div className="text-danger">{phoneNumberError}</div>
+            )}
           </div>
 
           {/* Email */}
@@ -236,12 +301,29 @@ const Signup = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
+            {emailError && <div className="text-danger">{emailError}</div>}
           </div>
-          <Link to={"/Profile"} className="linkbtn ">
+
+          {/* Save Button */}
+          {name &&
+          address &&
+          selectedCityOption &&
+          age &&
+          phoneNumber &&
+          email ? (
+            <Link to={"/"} className="linkbtn">
+              <Button
+                className="btn btn-primary my-2 w-100"
+                onClick={handleSave}
+              >
+                {isEnglish ? "Login" : "تسجيل"}
+              </Button>
+            </Link>
+          ) : (
             <Button className="btn btn-primary my-2 w-100" onClick={handleSave}>
-              {isEnglish ? "Login" : "تسجيل الدخول"}
+              {isEnglish ? "Login" : "تسجيل"}
             </Button>
-          </Link>
+          )}
         </div>
       </div>
     </div>

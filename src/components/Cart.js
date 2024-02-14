@@ -109,7 +109,11 @@ export const Cart = () => {
         <span className="total-length w-25 h-25 "> {cart.length}</span>
       </Button>
 
-      <Offcanvas show={show} onHide={handleClose}>
+      <Offcanvas
+        show={show}
+        onHide={handleClose}
+        className="bg-dark text-white"
+      >
         <Offcanvas.Header closeButton>
           <Offcanvas.Title>
             <h5>
@@ -137,9 +141,14 @@ export const Cart = () => {
                 {isEnglish ? "Clear All" : "مسح الكل"}
               </Button>
             </div>
-            <div className="products h-50 px-3">
+            <div className="products h-50 px-3 rounded">
               <div className="catch mt-3">
-                <Table striped bordered hover>
+                <Table
+                  striped
+                  bordered
+                  hover
+                  className="rounded overflow-hidden"
+                >
                   <tbody>
                     {cart.map((product, index) => (
                       <tr key={index} className="my-1">

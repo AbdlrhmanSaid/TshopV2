@@ -24,6 +24,7 @@ import {
   faChevronLeft,
 } from "@fortawesome/free-solid-svg-icons";
 import Offcanvas from "react-bootstrap/Offcanvas";
+import { Container } from "react-bootstrap";
 
 export const Homepage = () => {
   const dispatch = useDispatch();
@@ -90,12 +91,19 @@ export const Homepage = () => {
           {...props}
           className="bg-dark"
         >
-          <Offcanvas.Header closeButton className="text-white">
-            <Offcanvas.Title>Menu</Offcanvas.Title>
+          <Offcanvas.Header closeButton className="hederMenu text-white">
+            <Offcanvas.Title>
+              <FontAwesomeIcon icon={faBars} className="mx-1" />
+              Menu
+            </Offcanvas.Title>
           </Offcanvas.Header>
           <Offcanvas.Body>
-            <Form inline onSubmit={(e) => e.preventDefault()} className="m-2">
-              <Row className="justify-content-center">
+            <Form
+              inline
+              onSubmit={(e) => e.preventDefault()}
+              className="m-2flex-nowrap"
+            >
+              <Row className="justify-content-center flex-nowrap">
                 <Col xs="auto">
                   <Form.Control
                     type="text"
@@ -118,27 +126,37 @@ export const Homepage = () => {
             </Form>
             <div className="btns w-100 mb-3  p-2 d-flex flex-column">
               <div className="catig-btns text-center d-flex flex-column">
-                <Button
-                  className={`m-2 d-flex justify-content-around align-items-center ${
-                    selectedCategory === null ? "active" : ""
-                  }`}
-                  onClick={() => setSelectedCategory(null)}
+                <a
+                  href="#categories"
+                  className="text-white text-decoration-none"
                 >
-                  <FontAwesomeIcon icon={faChevronLeft} />
-                  <p className="m-0 w-50">All</p>
-                </Button>
-                {uniqueCategories.map((category, index) => (
                   <Button
-                    key={index}
-                    variant="primary"
-                    className={`m-2 d-flex justify-content-around align-items-center ${
-                      selectedCategory === category ? "active" : ""
+                    className={`m-2 d-flex justify-content-around align-items-center  w-100 ${
+                      selectedCategory === null ? "active" : ""
                     }`}
-                    onClick={() => setSelectedCategory(category)}
+                    onClick={() => setSelectedCategory(null)}
                   >
                     <FontAwesomeIcon icon={faChevronLeft} />
-                    <p className="m-0 w-50">{category}</p>
+                    <p className="m-0 w-50">All</p>
                   </Button>
+                </a>
+                {uniqueCategories.map((category, index) => (
+                  <a
+                    href="#categories"
+                    className="text-white text-decoration-none"
+                  >
+                    <Button
+                      key={index}
+                      variant="primary"
+                      className={`m-2 d-flex justify-content-around align-items-center w-100 ${
+                        selectedCategory === category ? "active" : ""
+                      }`}
+                      onClick={() => setSelectedCategory(category)}
+                    >
+                      <FontAwesomeIcon icon={faChevronLeft} />
+                      <p className="m-0 w-50">{category}</p>
+                    </Button>
+                  </a>
                 ))}
               </div>
             </div>
@@ -206,157 +224,166 @@ export const Homepage = () => {
 
   return (
     <>
-      {loading ? (
-        <div
-          className="spinners d-flex justify-content-center "
-          style={{ margin: "130px auto 100px auto" }}
-        >
-          <Spinner animation="border m-3" variant="primary" />
-          <Spinner animation="border m-3" variant="primary" />
-          <Spinner animation="border m-3" variant="primary" />
-        </div>
-      ) : (
-        <>
-          <h2 className="m-2">
-            {isEnglish ? " Best seller :" : " الاكثر مبيعا :"}
-          </h2>
-          <Row className="justify-content-center mt-3" style={{ flex: "1" }}>
-            <Col xs={12} md={8} className="parent-slide">
-              <div
-                id="carouselExampleIndicators child-slide"
-                className="carousel slide"
-              >
-                <div className="carousel-indicators">
-                  {currentImages.map((image, index) => (
-                    <button
-                      key={index}
-                      type="button"
-                      data-bs-target="#carouselExampleIndicators"
-                      data-bs-slide-to={index}
-                      className={index === 0 ? "active" : ""}
-                      aria-current={index === 0 ? "true" : ""}
-                      aria-label={`Slide ${index + 1}`}
-                    ></button>
-                  ))}
-                </div>
-                <div className="carousel-inner">
-                  {currentImages.map((image, index) => (
-                    <div
-                      key={index}
-                      className={`carousel-item ${index === 0 ? "active" : ""}`}
-                    >
-                      <Card className="text-center">
-                        <Card.Img
-                          variant="top"
-                          src={image}
-                          alt={`Slide ${index + 1}`}
-                        />
-                      </Card>
-                    </div>
-                  ))}
-                </div>
-                <button
-                  className="carousel-control-prev"
-                  type="button"
-                  data-bs-target="#carouselExampleIndicators"
-                  data-bs-slide="prev"
-                  onClick={handlePrev}
+      <Container>
+        {loading ? (
+          <div
+            className="spinners d-flex justify-content-center "
+            style={{ margin: "130px auto 100px auto" }}
+          >
+            <Spinner animation="border m-3" variant="primary" />
+            <Spinner animation="border m-3" variant="primary" />
+            <Spinner animation="border m-3" variant="primary" />
+          </div>
+        ) : (
+          <>
+            <h2 className="m-2">
+              {isEnglish ? " Best seller :" : " الاكثر مبيعا :"}
+            </h2>
+            <Row className="justify-content-center mt-3" style={{ flex: "1" }}>
+              <Col xs={12} md={8} className="parent-slide">
+                <div
+                  id="carouselExampleIndicators child-slide"
+                  className="carousel slide"
                 >
-                  <span
-                    className="carousel-control-prev-icon"
-                    aria-hidden="true"
-                  ></span>
-                  <span className="visually-hidden">Previous</span>
-                </button>
-                <button
-                  className="carousel-control-next"
-                  type="button"
-                  data-bs-target="#carouselExampleIndicators"
-                  data-bs-slide="next"
-                  onClick={handleNext}
-                >
-                  <span
-                    className="carousel-control-next-icon"
-                    aria-hidden="true"
-                  ></span>
-                  <span className="visually-hidden">Next</span>
-                </button>
-              </div>
-            </Col>
-          </Row>
-          <h2 className="m-2">
-            {isEnglish ? " Products categories :" : "  فئات المنتجات :"}
-          </h2>
-
-          <Row xs={1} md={2} lg={3} className="m-3">
-            {filteredProducts.map((product) => (
-              <Col key={product.id} className="mb-3">
-                <div className="box  shadow rounded w-100 h-100 border overflow-hidden ">
-                  <div className="half2 d-flex justify-content-evenly flex-column rounded-end bg-dark p-3 ">
-                    <div className="headerHalf2 d-flex align-items-center justify-content-between ">
-                      <div className="info text-light">
-                        <p>{product.title}</p>
-                      </div>
-                      <div className="btnsAction d-flex gap-1 justify-content-end">
-                        {isLogin ? (
-                          <>
-                            <Button
-                              variant="primary"
-                              onClick={() => dispatch(addToCart(product))}
-                              className="rounded-circle"
-                            >
-                              <FontAwesomeIcon icon={faCartPlus} />
-                            </Button>
-                            <Button
-                              variant="danger"
-                              onClick={() => addedToFev(product)}
-                              className="rounded-circle"
-                            >
-                              <FontAwesomeIcon icon={faHeart} />
-                            </Button>
-                          </>
-                        ) : (
-                          <>
-                            <Button
-                              variant="primary"
-                              onClick={() => notLogin()}
-                              className="rounded-circle"
-                            >
-                              <FontAwesomeIcon icon={faCartPlus} />
-                            </Button>
-                            <Button
-                              variant="danger"
-                              onClick={() => notLogin()}
-                              className="rounded-circle"
-                            >
-                              <FontAwesomeIcon icon={faHeart} />
-                            </Button>
-                          </>
-                        )}
-                        <Link to={`/Product/${product.id}`}>
-                          <Button variant="success" className="rounded-circle">
-                            <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
-                          </Button>
-                        </Link>
-                      </div>
-                    </div>
-                    <p className="text-white">${product.price}</p>
+                  <div className="carousel-indicators">
+                    {currentImages.map((image, index) => (
+                      <button
+                        key={index}
+                        type="button"
+                        data-bs-target="#carouselExampleIndicators"
+                        data-bs-slide-to={index}
+                        className={index === 0 ? "active" : ""}
+                        aria-current={index === 0 ? "true" : ""}
+                        aria-label={`Slide ${index + 1}`}
+                      ></button>
+                    ))}
                   </div>
-                  <div className="half1 m-auto p-3 w-50">
-                    <Image
-                      src={product.image}
-                      className="w-100 h-100  "
-                      rounded
-                    />
+                  <div className="carousel-inner">
+                    {currentImages.map((image, index) => (
+                      <div
+                        key={index}
+                        className={`carousel-item ${
+                          index === 0 ? "active" : ""
+                        }`}
+                      >
+                        <Card className="text-center">
+                          <Card.Img
+                            variant="top"
+                            src={image}
+                            alt={`Slide ${index + 1}`}
+                          />
+                        </Card>
+                      </div>
+                    ))}
                   </div>
+                  <button
+                    className="carousel-control-prev"
+                    type="button"
+                    data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide="prev"
+                    onClick={handlePrev}
+                  >
+                    <span
+                      className="carousel-control-prev-icon"
+                      aria-hidden="true"
+                    ></span>
+                    <span className="visually-hidden">Previous</span>
+                  </button>
+                  <button
+                    className="carousel-control-next"
+                    type="button"
+                    data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide="next"
+                    onClick={handleNext}
+                  >
+                    <span
+                      className="carousel-control-next-icon"
+                      aria-hidden="true"
+                    ></span>
+                    <span className="visually-hidden">Next</span>
+                  </button>
                 </div>
               </Col>
-            ))}
-          </Row>
-        </>
-      )}
-      <Cart />
-      <Example />
+            </Row>
+            <h2 className="m-2">
+              {isEnglish ? " Products categories :" : "  فئات المنتجات :"}
+            </h2>
+
+            <Row xs={1} md={2} lg={3} className="m-3" id="categories">
+              {filteredProducts.map((product) => (
+                <Col key={product.id} className="mb-3">
+                  <div className="box  shadow rounded w-100 h-100 border overflow-hidden ">
+                    <div className="half2 d-flex justify-content-evenly flex-column rounded-end bg-dark p-3 ">
+                      <div className="headerHalf2 d-flex align-items-center justify-content-between ">
+                        <div className="info text-light">
+                          <p>{product.title}</p>
+                        </div>
+                        <div className="btnsAction d-flex gap-1 justify-content-end">
+                          {isLogin ? (
+                            <>
+                              <Button
+                                variant="primary"
+                                onClick={() => dispatch(addToCart(product))}
+                                className="rounded-circle"
+                              >
+                                <FontAwesomeIcon icon={faCartPlus} />
+                              </Button>
+                              <Button
+                                variant="danger"
+                                onClick={() => addedToFev(product)}
+                                className="rounded-circle"
+                              >
+                                <FontAwesomeIcon icon={faHeart} />
+                              </Button>
+                            </>
+                          ) : (
+                            <>
+                              <Button
+                                variant="primary"
+                                onClick={() => notLogin()}
+                                className="rounded-circle"
+                              >
+                                <FontAwesomeIcon icon={faCartPlus} />
+                              </Button>
+                              <Button
+                                variant="danger"
+                                onClick={() => notLogin()}
+                                className="rounded-circle"
+                              >
+                                <FontAwesomeIcon icon={faHeart} />
+                              </Button>
+                            </>
+                          )}
+                          <Link to={`/Product/${product.id}`}>
+                            <Button
+                              variant="success"
+                              className="rounded-circle"
+                            >
+                              <FontAwesomeIcon
+                                icon={faArrowUpRightFromSquare}
+                              />
+                            </Button>
+                          </Link>
+                        </div>
+                      </div>
+                      <p className="text-white">${product.price}</p>
+                    </div>
+                    <div className="half1 m-auto p-3 w-50">
+                      <Image
+                        src={product.image}
+                        className="w-100 h-100  "
+                        rounded
+                      />
+                    </div>
+                  </div>
+                </Col>
+              ))}
+            </Row>
+          </>
+        )}
+        <Cart />
+        <Example />
+      </Container>
     </>
   );
 };
