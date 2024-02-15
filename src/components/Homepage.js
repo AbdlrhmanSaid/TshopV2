@@ -19,7 +19,7 @@ import {
   faMagnifyingGlass,
   faHeart,
   faArrowUpRightFromSquare,
-  faCartPlus,
+  faPlus,
   faBars,
   faChevronLeft,
 } from "@fortawesome/free-solid-svg-icons";
@@ -305,20 +305,27 @@ export const Homepage = () => {
                 </div>
               </Col>
             </Row>
-            <h2 className="m-2">
-              {isEnglish ? " Products categories :" : "  فئات المنتجات :"}
-            </h2>
-
-            <Row xs={1} md={2} lg={3} className="m-3" id="categories">
-              {filteredProducts.map((product) => (
-                <Col key={product.id} className="mb-3">
-                  <div className="box  shadow rounded w-100 h-100 border overflow-hidden ">
-                    <div className="half2 d-flex justify-content-evenly flex-column rounded-end bg-dark p-3 ">
-                      <div className="headerHalf2 d-flex align-items-center justify-content-between ">
-                        <div className="info text-light">
-                          <p>{product.title}</p>
-                        </div>
-                        <div className="btnsAction d-flex gap-1 justify-content-end">
+            <div className="productsShow" id="categories">
+              <h2 className="m-2">
+                {isEnglish ? " Products categories :" : "  فئات المنتجات :"}
+              </h2>
+              <Row xs={1} md={2} lg={3} className="m-3">
+                {filteredProducts.map((product) => (
+                  <Col key={product.id} className="mb-3">
+                    <div
+                      className="box rounded border shadow w-100 h-100 overflow-hidden"
+                      style={{ height: "400px" }}
+                    >
+                      <div className="half1 m-auto p-3 w-50 h-50 position-relative">
+                        <Image
+                          src={product.image}
+                          className="w-100 h-100 prod-img "
+                          rounded
+                        />
+                        <p className="categoryNameTitle position-absolute m-0 px-3 mt-1">
+                          {product.category}
+                        </p>
+                        <div className="btnsAction d-flex gap-1 justify-content-end position-absolute">
                           {isLogin ? (
                             <>
                               <Button
@@ -326,7 +333,7 @@ export const Homepage = () => {
                                 onClick={() => dispatch(addToCart(product))}
                                 className="rounded-circle"
                               >
-                                <FontAwesomeIcon icon={faCartPlus} />
+                                <FontAwesomeIcon icon={faPlus} />
                               </Button>
                               <Button
                                 variant="danger"
@@ -343,7 +350,7 @@ export const Homepage = () => {
                                 onClick={() => notLogin()}
                                 className="rounded-circle"
                               >
-                                <FontAwesomeIcon icon={faCartPlus} />
+                                <FontAwesomeIcon icon={faPlus} />
                               </Button>
                               <Button
                                 variant="danger"
@@ -366,19 +373,17 @@ export const Homepage = () => {
                           </Link>
                         </div>
                       </div>
-                      <p className="text-white">${product.price}</p>
+                      <div className="headerHalf2 d-flex align-items-center justify-content-between shadow  h-50 px-3">
+                        <div className="info mt-4 p-2 ">
+                          <p className="m-0">{product.title}</p>
+                          <h3>{product.price} $</h3>
+                        </div>
+                      </div>
                     </div>
-                    <div className="half1 m-auto p-3 w-50">
-                      <Image
-                        src={product.image}
-                        className="w-100 h-100  "
-                        rounded
-                      />
-                    </div>
-                  </div>
-                </Col>
-              ))}
-            </Row>
+                  </Col>
+                ))}
+              </Row>
+            </div>
           </>
         )}
         <Cart />

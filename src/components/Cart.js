@@ -6,10 +6,11 @@ import {
   faCartShopping,
   faCheck,
   faTimes,
+  faBoxOpen,
+  faX,
 } from "@fortawesome/free-solid-svg-icons";
 import { useSelector, useDispatch } from "react-redux";
-import { Image } from "react-bootstrap";
-import Table from "react-bootstrap/Table";
+import { Image, Row, Col } from "react-bootstrap";
 import Swal from "sweetalert2";
 import Modal from "react-bootstrap/Modal";
 import { selectUserData } from "../rtk/slices/userSlice";
@@ -19,9 +20,9 @@ import { selectLanguage } from "../rtk/slices/deflanSlice";
 
 export const Cart = () => {
   const isEnglish = useSelector(selectLanguage);
-
   const userData = useSelector(selectUserData);
   const cart = useSelector((state) => state.cart);
+
   const dispatch = useDispatch();
   const [show, setShow] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -123,85 +124,89 @@ export const Cart = () => {
           </Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
-          <div className="cart">
-            <div className="header">
-              <h2 className="mb-3">
-                {isEnglish ? "Products : " : " عدد المنتجات : "}
-                {cart.length}
-              </h2>
-              <h5 className="my-3">
-                {isEnglish ? "Order Number : " : " طلب رقم : "}
-                {randomNum}
-              </h5>
-              <Button
-                variant="danger"
-                className="m-3 mt-0"
-                onClick={() => dispatch(clearCart())}
-              >
-                {isEnglish ? "Clear All" : "مسح الكل"}
-              </Button>
-            </div>
-            <div className="products h-50 px-3 rounded">
-              <div className="catch mt-3">
-                <Table
-                  striped
-                  bordered
-                  hover
-                  className="rounded overflow-hidden"
-                >
-                  <tbody>
-                    {cart.map((product, index) => (
-                      <tr key={index} className="my-1">
-                        <td>
-                          <Image
-                            className="min-pic"
-                            src={product.image}
-                            roundedCircle
-                          />
-                        </td>
-                        <td>
-                          <p>{product.price} $</p>
-                        </td>
-                        <td>
-                          <p>{product.quantity}</p>
-                        </td>
-                        <td>
-                          <Button
-                            variant="danger"
-                            onClick={() => dispatch(deleteFromCart(product))}
-                          >
-                            {isEnglish ? "Delete" : "مسح "}
-                          </Button>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </Table>
+          {cart.length === 0 ? (
+            <>
+              <div className="w-100 text-center mt-3">
+                <h3>
+                  <FontAwesomeIcon icon={faBoxOpen} />
+                </h3>
+                <h3>cart is Empty</h3>
               </div>
-            </div>
-            <div className="done mb-3 h-25">
-              <h3 className="mx-3">
-                {isEnglish ? "Total:" : "المجموع:"}
-                {totalPrice.toFixed(2)}
-              </h3>
-              {cart.length === 0 ? (
-                <Button variant="success" className="mx-3" disabled>
-                  <FontAwesomeIcon icon={faCheck} />
+            </>
+          ) : (
+            <div className="cart">
+              <div className="header">
+                <h2 className="mb-3">
+                  {isEnglish ? "Products : " : " عدد المنتجات : "}
+                  {cart.length}
+                </h2>
+                <h5 className="my-3">
+                  {isEnglish ? "Order Number : " : " طلب رقم : "}
+                  {randomNum}
+                </h5>
+                <Button
+                  variant="danger"
+                  className="m-3 mt-0"
+                  onClick={() => dispatch(clearCart())}
+                >
+                  {isEnglish ? "Clear All" : "مسح الكل"}
                 </Button>
-              ) : (
+              </div>
+              <div className="products h-50 px-3 ">
+                <div className="catch mt-3 ">
+                  <Row xs={1} md={1} lg={1}>
+                    {cart.map((product, index) => (
+                      <Col className="bg-white col-color rounded mb-2">
+                        <div className="line my-2 d-flex justify-content-between align-items-center  ">
+                          <div className="box1 me-1">
+                            <Image className="min-pic" src={product.image} />
+                          </div>
+                          <div className="box2 text-black">
+                            <p className="m-0">{product.title}</p>
+                            <p className="m-0">${product.price}</p>
+                            <p className="m-0 text-white mt-2 d-flex  align-items-center ">
+                              <span className="bg-secondary mx-1 px-3  rounded click">
+                                {product.quantity}
+                              </span>
+                            </p>
+                          </div>
+                          <div className="delBtn">
+                            <Button
+                              variant="danger"
+                              onClick={() => dispatch(deleteFromCart(product))}
+                              className="rounded-circle"
+                            >
+                              <FontAwesomeIcon icon={faX} />
+                            </Button>
+                          </div>
+                        </div>
+                      </Col>
+                    ))}
+                  </Row>
+                </div>
+              </div>
+              <div className="done mb-3 h-25">
+                <h3 className="mx-3">
+                  {isEnglish ? "Total:" : "المجموع:"}
+                  {totalPrice.toFixed(2)}
+                </h3>
                 <Button
                   variant="success"
-                  className="me-2"
+                  className="mx-2"
                   onClick={handleModalShow}
                 >
                   <FontAwesomeIcon icon={faCheck} />
                 </Button>
-              )}
-              <Button variant="danger" onClick={showCancelAlert}>
-                <FontAwesomeIcon icon={faTimes} />
-              </Button>
+                <Button
+                  variant="danger"
+                  onClick={showCancelAlert}
+                  className="mx-2"
+                >
+                  <FontAwesomeIcon icon={faTimes} />
+                </Button>
+              </div>
             </div>
-          </div>
+          )}
         </Offcanvas.Body>
       </Offcanvas>
 

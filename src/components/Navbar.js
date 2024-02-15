@@ -12,9 +12,9 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faRightToBracket,
-  faAngleLeft,
   faAngleRight,
   faUser,
+  faGlobe,
 } from "@fortawesome/free-solid-svg-icons";
 import { selectLanguage, setLanguage } from "../rtk/slices/deflanSlice";
 import { clearUserData } from "../rtk/slices/userSlice";
@@ -59,17 +59,11 @@ function NavbarApp() {
                   <Link to="/" className="text-decoration-none">
                     <Nav.Link href="#home">Home</Nav.Link>
                   </Link>
-                  <Link to="/Profile" className="text-decoration-none">
-                    <Nav.Link href="#Profile">Profile</Nav.Link>
-                  </Link>
                 </>
               ) : (
                 <>
                   <Link to="/" className="text-decoration-none">
                     <Nav.Link href="#home">الرئيسية</Nav.Link>
-                  </Link>
-                  <Link to="/Profile" className="text-decoration-none">
-                    <Nav.Link href="#Profile">الصفحة الشخصية</Nav.Link>
                   </Link>
                 </>
               )}
@@ -98,8 +92,13 @@ function NavbarApp() {
                   </NavDropdown.Item>
                 </Link>
               </NavDropdown>
+              <Link to="/Profile" className="text-decoration-none">
+                <Nav.Link href="#Profile">
+                  <FontAwesomeIcon icon={faUser} />
+                </Nav.Link>
+              </Link>
               <NavDropdown
-                title={isEnglish ? "Language" : "اللغة"}
+                title={<FontAwesomeIcon icon={faGlobe} />}
                 id="basic-nav-dropdown"
               >
                 <NavDropdown.Item onClick={() => handleLanguageChange(true)}>
@@ -113,16 +112,16 @@ function NavbarApp() {
             {isLogin ? (
               <>
                 <div className="details text-white d-flex align-items-center ">
-                  <FontAwesomeIcon icon={faUser} className="mx-2" />
+                  <FontAwesomeIcon icon={faUser} className="me-2" />
                   <p className="m-0">{userData.username}</p>
+                  <Button
+                    variant="primary"
+                    onClick={handleShowLogout}
+                    className="ms-3 logbtn"
+                  >
+                    <FontAwesomeIcon className="" icon={faRightToBracket} />{" "}
+                  </Button>
                 </div>
-                <Button
-                  variant="primary"
-                  onClick={handleShowLogout}
-                  className="ms-3 logbtn"
-                >
-                  <FontAwesomeIcon className="" icon={faRightToBracket} />{" "}
-                </Button>
                 {isEnglish ? (
                   <Modal show={show} onHide={handleCloseLogout}>
                     <Modal.Header>
@@ -156,7 +155,7 @@ function NavbarApp() {
                 )}
               </>
             ) : (
-              <Link to="/Login" className="ms-3">
+              <Link to="/Login" className="">
                 <Button variant="primary logbtn">
                   {isEnglish ? "Log In" : "سجل الدخول"}
                   <FontAwesomeIcon icon={faAngleRight} className="mx-1" />

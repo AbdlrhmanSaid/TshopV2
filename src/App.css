@@ -1,3 +1,4 @@
+/* global */
 a {
   text-decoration: none;
 }
@@ -7,7 +8,7 @@ a.linkbtn {
 }
 
 ::-webkit-scrollbar {
-  width: 7px; /* عرض الشريط */
+  width: 10px;
 }
 
 ::-webkit-scrollbar-track {
@@ -22,6 +23,7 @@ a.linkbtn {
 ::-webkit-scrollbar-thumb:hover {
   background-color: #555; /* لون الشريط عند التحويم */
 }
+/* nav */
 .navbar {
   z-index: 1000;
 }
@@ -36,6 +38,7 @@ nav .searchArea,
 nav .searchbtn {
   cursor: pointer;
 }
+/* nav */
 
 .side-btn {
   height: fit-content;
@@ -48,10 +51,6 @@ nav .searchbtn {
   flex-direction: row-reverse;
 }
 
-.main .footer {
-  justify-content: space-around;
-  align-items: center;
-}
 .main .price {
   margin: 0;
 }
@@ -67,7 +66,7 @@ nav .searchbtn {
   top: 11%;
 }
 .min-pic {
-  width: 40px;
+  width: 70px;
 }
 .big-pic {
   width: 80px;
@@ -88,12 +87,7 @@ nav .searchbtn {
   justify-content: space-evenly;
 }
 
-footer a {
-  text-decoration: none;
-  font-weight: bold;
-  letter-spacing: 3px;
-}
-
+/* carousel */
 .carousel-control-next-icon,
 .carousel-control-prev-icon {
   background-color: #777;
@@ -104,10 +98,22 @@ footer a {
   background: #00000069;
   border-radius: 6px;
 }
+/* carousel */
+/* footer */
 footer {
   position: relative;
   bottom: 0;
 }
+footer a {
+  text-decoration: none;
+  font-weight: bold;
+  letter-spacing: 3px;
+}
+.main .footer {
+  justify-content: space-around;
+  align-items: center;
+}
+/* footer */
 .signhbtn a {
   color: white;
   font-weight: 600;
@@ -150,6 +156,18 @@ a {
 .form-group {
   margin-top: 10px;
 }
+
+.btnsAction {
+  top: 5px;
+  right: -75px;
+}
+.categoryNameTitle {
+  background: #ccc;
+  padding: 2px;
+  border-radius: 10px;
+  left: -60px;
+}
+/* media screen */
 @media (max-width: 767px) {
   .btns {
     font-size: 10px;
@@ -171,4 +189,20 @@ a {
     margin: auto;
     height: 300px;
   }
+  .btnsAction {
+    right: -60px;
+  }
+  .btnsAction button {
+    font-size: 9px;
+    width: 10px;
+    text-align: center;
+  }
+  .btnsAction button svg {
+    margin: 0 -4px;
+  }
+  .categoryNameTitle {
+    font-size: 12px;
+    left: -55px;
+  }
 }
+/* media screen */
