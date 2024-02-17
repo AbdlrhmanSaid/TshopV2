@@ -16,6 +16,7 @@ import { selectLanguage } from "../rtk/slices/deflanSlice";
 import Alert from "react-bootstrap/Alert";
 import Button from "react-bootstrap/Button";
 import { Container } from "react-bootstrap";
+import img1 from "../imgs/loginPhoto.png";
 
 const Profile = () => {
   const userData = useSelector(selectUserData);
@@ -79,18 +80,25 @@ const Profile = () => {
             </div>
           </div>
         ) : (
-          <div className="m-5 p-5">
-            <Alert variant="danger" style={{ margin: "15% 0" }}>
-              <Alert.Heading>
-                {isEnglish ? " Please Login First" : "سجل الدخول اولا"}
-              </Alert.Heading>
-              <hr />
-              <Link to={"/Login"} className="text-center w-100">
-                <Button variant="primary" className="m-auto">
-                  {isEnglish ? " Login" : " سجل الدخول"}
-                </Button>{" "}
-              </Link>
-            </Alert>
+          <div className="m-5">
+            <div className="boxAlert d-flex justify-content-between">
+              <div className="half1">
+                <img src={img1} className="h-75" />
+              </div>
+              <div className="half2 w-100">
+                <Alert variant="secondary" style={{ margin: "15% 0" }}>
+                  <Alert.Heading>
+                    {isEnglish ? " Please Login First" : "سجل الدخول اولا"}
+                  </Alert.Heading>
+                  <hr />
+                  <Link to={"/Login"} className="text-center w-100">
+                    <Button variant="primary" className="m-auto">
+                      {isEnglish ? " Login" : " سجل الدخول"}
+                    </Button>{" "}
+                  </Link>
+                </Alert>
+              </div>
+            </div>
           </div>
         )}
       </>

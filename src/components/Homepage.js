@@ -98,32 +98,6 @@ export const Homepage = () => {
             </Offcanvas.Title>
           </Offcanvas.Header>
           <Offcanvas.Body>
-            <Form
-              inline
-              onSubmit={(e) => e.preventDefault()}
-              className="m-2flex-nowrap"
-            >
-              <Row className="justify-content-center flex-nowrap">
-                <Col xs="auto">
-                  <Form.Control
-                    type="text"
-                    placeholder={isEnglish ? "Search" : "بحث"}
-                    className="mr-sm-2"
-                  />
-                </Col>
-                <Col xs="auto">
-                  {isLogin ? (
-                    <Button type="submit">
-                      <FontAwesomeIcon icon={faMagnifyingGlass} />
-                    </Button>
-                  ) : (
-                    <Button type="submit" onClick={() => notLogin()}>
-                      <FontAwesomeIcon icon={faMagnifyingGlass} />
-                    </Button>
-                  )}
-                </Col>
-              </Row>
-            </Form>
             <div className="btns w-100 mb-3  p-2 d-flex flex-column">
               <div className="catig-btns text-center d-flex flex-column">
                 <a
@@ -236,10 +210,39 @@ export const Homepage = () => {
           </div>
         ) : (
           <>
-            <h2 className="m-2">
-              {isEnglish ? " Best seller :" : " الاكثر مبيعا :"}
+            <h2
+              className="m-2 bg-dark text-white p-2 rounded"
+              style={{ width: "fit-content" }}
+            >
+              {isEnglish ? " Best seller " : " الاكثر مبيعا "}
             </h2>
-            <Row className="justify-content-center mt-3" style={{ flex: "1" }}>
+            <Form
+              inline
+              onSubmit={(e) => e.preventDefault()}
+              className="my-4 flex-nowrap"
+            >
+              <Row className="justify-content-center flex-nowrap">
+                <Col xs="auto">
+                  <Form.Control
+                    type="text"
+                    placeholder={isEnglish ? "Search" : "بحث"}
+                    className="mr-sm-2"
+                  />
+                </Col>
+                <Col xs="auto">
+                  {isLogin ? (
+                    <Button type="submit">
+                      <FontAwesomeIcon icon={faMagnifyingGlass} />
+                    </Button>
+                  ) : (
+                    <Button type="submit" onClick={() => notLogin()}>
+                      <FontAwesomeIcon icon={faMagnifyingGlass} />
+                    </Button>
+                  )}
+                </Col>
+              </Row>
+            </Form>
+            <Row className="justify-content-center my-3" style={{ flex: "1" }}>
               <Col xs={12} md={8} className="parent-slide">
                 <div
                   id="carouselExampleIndicators child-slide"
@@ -306,12 +309,19 @@ export const Homepage = () => {
               </Col>
             </Row>
             <div className="productsShow" id="categories">
-              <h2 className="m-2">
-                {isEnglish ? " Products categories :" : "  فئات المنتجات :"}
+              <h2
+                className="m-2 bg-dark text-white p-2 rounded"
+                style={{ width: "fit-content" }}
+              >
+                {isEnglish ? " Products categories " : "  فئات المنتجات "}
               </h2>
               <Row xs={1} md={2} lg={3} className="m-3">
                 {filteredProducts.map((product) => (
-                  <Col key={product.id} className="mb-3">
+                  <Col
+                    key={product.id}
+                    className="mb-3"
+                    style={{ transition: "0.5s" }}
+                  >
                     <div
                       className="box rounded border shadow w-100 h-100 overflow-hidden"
                       style={{ height: "400px" }}

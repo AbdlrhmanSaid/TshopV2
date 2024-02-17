@@ -1,4 +1,7 @@
 /* global */
+body {
+  background-color: #212529;
+}
 a {
   text-decoration: none;
 }
@@ -17,7 +20,7 @@ a.linkbtn {
 
 ::-webkit-scrollbar-thumb {
   background-color: #888; /* لون الشريط نفسه */
-  border-radius: 6px; /* شكل حواف الشريط */
+  border-radius: 3px; /* شكل حواف الشريط */
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -49,6 +52,28 @@ nav .searchbtn {
 }
 .hederMenu {
   flex-direction: row-reverse;
+}
+
+.intro {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to bottom, #212529, #363c42, white);
+}
+
+.intro h2 {
+  width: 100%;
+  height: fit-content;
+}
+.boxContent .text {
+  background: #212529;
+  color: white;
+  text-align: center;
+  padding: 13px;
+  line-height: 36px;
+  border-radius: 6px;
+  margin: 15px;
 }
 
 .main .price {
@@ -159,7 +184,7 @@ a {
 
 .btnsAction {
   top: 5px;
-  right: -75px;
+  right: -44%;
 }
 .categoryNameTitle {
   background: #ccc;
@@ -167,6 +192,7 @@ a {
   border-radius: 10px;
   left: -60px;
 }
+
 /* media screen */
 @media (max-width: 767px) {
   .btns {
@@ -203,6 +229,28 @@ a {
   .categoryNameTitle {
     font-size: 12px;
     left: -55px;
+  }
+  .boxAlert {
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
+  .boxAlert img {
+    width: 50%;
+  }
+  .boxAlert .half2 {
+    width: 100%;
+  }
+  .boxContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .boxContent img {
+    width: 90%;
+  }
+  .boxContent .text {
+    margin-top: 10px;
   }
 }
 /* media screen */

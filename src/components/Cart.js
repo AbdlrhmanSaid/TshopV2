@@ -17,6 +17,7 @@ import { selectUserData } from "../rtk/slices/userSlice";
 import { deleteFromCart, clearCart } from "../rtk/slices/cartSlice";
 import { addOrder } from "../rtk/slices/orderSlice";
 import { selectLanguage } from "../rtk/slices/deflanSlice";
+import empty from "../imgs/empty.png";
 
 export const Cart = () => {
   const isEnglish = useSelector(selectLanguage);
@@ -127,10 +128,8 @@ export const Cart = () => {
           {cart.length === 0 ? (
             <>
               <div className="w-100 text-center mt-3">
-                <h3>
-                  <FontAwesomeIcon icon={faBoxOpen} />
-                </h3>
-                <h3>cart is Empty</h3>
+                <h2>cart is Empty</h2>
+                <img src={empty} />
               </div>
             </>
           ) : (

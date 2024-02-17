@@ -59,7 +59,7 @@ export const Viewprod = () => {
                 <Card.Text>
                   <h2>{product.price}$</h2>
                 </Card.Text>
-                <Link to={"/"} className="m-auto">
+                <Link to={"/shop"} className="m-auto">
                   <Button variant="primary">
                     {isEnglish ? "Back" : "رجوع"}
                   </Button>

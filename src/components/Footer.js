@@ -4,10 +4,8 @@ import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { selectLanguage } from "../rtk/slices/deflanSlice";
 import { useSelector } from "react-redux";
-
 const Footer = () => {
   const isEnglish = useSelector(selectLanguage);
-
   return (
     <footer className="bg-dark text-light mt-5">
       <Container className="pt-3">
@@ -40,11 +38,11 @@ const Footer = () => {
             </p>
             <p className="link-info">
               <a
-                href="https://www.twitter.com"
+                href="https://www.X.com"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Twitter
+                X
               </a>
             </p>
             <p className="link-danger">

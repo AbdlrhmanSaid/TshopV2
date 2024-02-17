@@ -22,7 +22,6 @@ export const Favorites = () => {
   return (
     <>
       <div className=" p-5" style={{ margin: "130px auto auto auto" }}>
-        <h2>{isEnglish ? "Favorites" : " المفضلة"}</h2>
         <div className="products h-50 px-3">
           <div className="catch">
             <Table striped bordered hover>

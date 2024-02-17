@@ -11,13 +11,15 @@ import SettingsPage from "./components/Settings";
 import ContactUs from "./components/Contact";
 import Orders from "./components/Orders";
 import Favorites from "./components/Favorites";
+import { MaimPage } from "./components/MaimPage";
 function App() {
   return (
     <div className="App">
       <NavbarApp />
-      <div className="bg-light shadow rounded-bottom overflow-hidden p-0 ">
+      <div className="bg-light shadow mb-4 overflow-hidden p-0 ">
         <Routes>
-          <Route path="/" element={<Homepage />} />
+          <Route path="/" element={<MaimPage />} />
+          <Route path="/shop" element={<Homepage />} />
           <Route path="/Profile" element={<Profile />} />
           <Route path="/Login" element={<Login />} />
           <Route path="/Signup" element={<Signup />} />

@@ -15,6 +15,8 @@ import {
   faAngleRight,
   faUser,
   faGlobe,
+  faE,
+  faShop,
 } from "@fortawesome/free-solid-svg-icons";
 import { selectLanguage, setLanguage } from "../rtk/slices/deflanSlice";
 import { clearUserData } from "../rtk/slices/userSlice";
@@ -47,10 +49,18 @@ function NavbarApp() {
         expand="lg"
         bg="dark"
         variant="dark"
-        className="border-bottom  border-secondary position-sticky top-0"
+        className="  position-sticky top-0"
       >
         <Container>
-          <Navbar.Brand href="#home">ShopEmpire</Navbar.Brand>
+          <Link to="/" className="text-decoration-none">
+            <Navbar.Brand href="#home">
+              Shop
+              <span className="bg-white text-black px-1">
+                <FontAwesomeIcon icon={faE} />
+              </span>
+              mpire
+            </Navbar.Brand>
+          </Link>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
@@ -67,6 +77,16 @@ function NavbarApp() {
                   </Link>
                 </>
               )}
+              <Link to="/shop" className="text-decoration-none">
+                <Nav.Link href="#shop">
+                  <FontAwesomeIcon icon={faShop} />
+                </Nav.Link>
+              </Link>
+              <Link to="/Profile" className="text-decoration-none">
+                <Nav.Link href="#Profile">
+                  <FontAwesomeIcon icon={faUser} />
+                </Nav.Link>
+              </Link>
               <NavDropdown
                 title={isEnglish ? "More" : "المزيد"}
                 id="basic-nav-dropdown"
@@ -92,11 +112,7 @@ function NavbarApp() {
                   </NavDropdown.Item>
                 </Link>
               </NavDropdown>
-              <Link to="/Profile" className="text-decoration-none">
-                <Nav.Link href="#Profile">
-                  <FontAwesomeIcon icon={faUser} />
-                </Nav.Link>
-              </Link>
+
               <NavDropdown
                 title={<FontAwesomeIcon icon={faGlobe} />}
                 id="basic-nav-dropdown"

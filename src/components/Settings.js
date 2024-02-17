@@ -18,6 +18,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import Alert from "react-bootstrap/Alert";
 import { selectLanguage } from "../rtk/slices/deflanSlice";
+import img1 from "../imgs/loginPhoto.png";
 
 const cityOptions = {
   cairo: [
@@ -145,9 +146,15 @@ const SettingsPage = () => {
                   value={selectedCity}
                   onChange={(e) => handleCityChange(e.target.value)}
                 >
-                  <option value="">Select City</option>
-                  <option value="cairo">Cairo</option>
-                  <option value="alexandria">Alexandria</option>
+                  <option value="">
+                    {isEnglish ? "City" : "اختر المدينة"}
+                  </option>
+                  <option value="cairo">
+                    {isEnglish ? "Cairo" : "القاهرة"}
+                  </option>
+                  <option value="alexandria">
+                    {isEnglish ? "Alexandria" : "الاسكندرية"}
+                  </option>
                 </select>
               </div>
 
@@ -235,18 +242,25 @@ const SettingsPage = () => {
           </div>
         </div>
       ) : (
-        <div className="m-5 p-5">
-          <Alert variant="danger" style={{ margin: "15% 0" }}>
-            <Alert.Heading>
-              {isEnglish ? " Please Login First" : "سجل الدخول اولا"}
-            </Alert.Heading>
-            <hr />
-            <Link to={"/Login"} className="text-center w-100">
-              <Button variant="primary" className="m-auto">
-                {isEnglish ? " Login" : " سجل الدخول"}
-              </Button>{" "}
-            </Link>
-          </Alert>
+        <div className="m-5">
+          <div className="boxAlert d-flex justify-content-between">
+            <div className="half1">
+              <img src={img1} className="h-75" />
+            </div>
+            <div className="half2 w-100">
+              <Alert variant="secondary" style={{ margin: "15% 0" }}>
+                <Alert.Heading>
+                  {isEnglish ? " Please Login First" : "سجل الدخول اولا"}
+                </Alert.Heading>
+                <hr />
+                <Link to={"/Login"} className="text-center w-100">
+                  <Button variant="primary" className="m-auto">
+                    {isEnglish ? " Login" : " سجل الدخول"}
+                  </Button>{" "}
+                </Link>
+              </Alert>
+            </div>
+          </div>
         </div>
       )}
     </>
