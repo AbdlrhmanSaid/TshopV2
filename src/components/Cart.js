@@ -46,7 +46,7 @@ export const Cart = () => {
       orderNumber: randomNum,
       products: cart.map((product) => ({
         id: product.id,
-        name: product.name,
+        title: product.title,
         quantity: product.quantity,
         price: product.price,
         image: product.image,
@@ -129,7 +129,7 @@ export const Cart = () => {
             <>
               <div className="w-100 text-center mt-3">
                 <h2>cart is Empty</h2>
-                <img src={empty} />
+                <img src={empty} style={{ width: "90%" }} className="mt-3" />
               </div>
             </>
           ) : (
@@ -155,7 +155,10 @@ export const Cart = () => {
                 <div className="catch mt-3 ">
                   <Row xs={1} md={1} lg={1}>
                     {cart.map((product, index) => (
-                      <Col className="bg-white col-color rounded mb-2">
+                      <Col
+                        key={index}
+                        className="bg-white col-color rounded mb-2"
+                      >
                         <div className="line my-2 d-flex justify-content-between align-items-center  ">
                           <div className="box1 me-1">
                             <Image className="min-pic" src={product.image} />

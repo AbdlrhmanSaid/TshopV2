@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 const Footer = () => {
   const isEnglish = useSelector(selectLanguage);
   return (
-    <footer className="bg-dark text-light mt-5">
+    <footer className="bg-dark text-light">
       <Container className="pt-3">
         <Row>
           <Col lg={4} md={6} sm={12}>

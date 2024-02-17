@@ -2,6 +2,7 @@
 body {
   background-color: #212529;
 }
+
 a {
   text-decoration: none;
 }
@@ -148,11 +149,18 @@ footer a {
   width: 400px;
   margin: auto;
 }
-@media (min-width: 767px) {
-  .card-red {
-    width: 50%;
-  }
+.prodsMain {
+  background-image: url(./imgs/products.png);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center;
 }
+.orders {
+  background-image: url(./imgs/delivery.gif);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 .modal-header {
   background-color: #0d6efd;
   color: white;
@@ -251,6 +259,9 @@ a {
   }
   .boxContent .text {
     margin-top: 10px;
+  }
+  .card-red {
+    width: 50%;
   }
 }
 /* media screen */
