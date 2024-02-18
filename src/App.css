@@ -170,6 +170,25 @@ footer a {
   align-items: center;
 }
 
+.col .boxMain:hover {
+  border: 1px solid rgb(212, 212, 212);
+}
+
+.Elogo {
+  animation: change-colors 5s infinite linear; /* تحديد الأنيميشن */
+}
+
+@keyframes change-colors {
+  from {
+    background-color: black;
+    color: white;
+  }
+  to {
+    background-color: white;
+    color: black;
+  }
+}
+
 .categoryName {
   width: -webkit-fit-content;
   width: -moz-fit-content;
@@ -200,7 +219,11 @@ a {
   border-radius: 10px;
   left: -60px;
 }
-
+.favofrite {
+  background-image: url(./imgs//favorite.png);
+  background-repeat: no-repeat;
+  background-position: center;
+}
 /* media screen */
 @media (max-width: 767px) {
   .btns {

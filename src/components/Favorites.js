@@ -1,16 +1,10 @@
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
-import Offcanvas from "react-bootstrap/Offcanvas";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCartShopping,
-  faCheck,
-  faTimes,
-  faHeart,
-} from "@fortawesome/free-solid-svg-icons";
+import { faX } from "@fortawesome/free-solid-svg-icons";
 import { useSelector, useDispatch } from "react-redux";
 import { Image } from "react-bootstrap";
-import Table from "react-bootstrap/Table";
+import { Col, Row } from "react-bootstrap";
 import { deleteFromFav, clearFav } from "../rtk/slices/favSlice";
 import { selectLanguage } from "../rtk/slices/deflanSlice";
 
@@ -21,52 +15,41 @@ export const Favorites = () => {
 
   return (
     <>
-      <div className=" p-5" style={{ margin: "130px auto auto auto" }}>
-        <div className="products h-50 px-3">
-          <div className="catch">
-            <Table striped bordered hover>
-              <tbody>
-                {fav.length === 0 ? (
-                  <tr>
-                    <td colSpan="4" className="text-center">
-                      <h5>
-                        {isEnglish
-                          ? "No favorites added yet"
-                          : "لم يتم إضافة أي عناصر للمفضلة بعد"}
-                      </h5>
-                    </td>
-                  </tr>
-                ) : (
-                  fav.map((product, index) => (
-                    <tr key={index} className="my-1">
-                      <td>
-                        <Image
-                          className="min-pic"
-                          src={product.image}
-                          roundedCircle
-                        />
-                      </td>
-                      <td>
-                        <p>{product.price} $</p>
-                      </td>
-                      <td>
-                        <p>{product.title}</p>
-                      </td>
-                      <td>
-                        <Button
-                          variant="danger"
-                          onClick={() => dispatch(deleteFromFav(product))}
-                        >
-                          {isEnglish ? "Delete" : "مسح "}
-                        </Button>
-                      </td>
-                    </tr>
-                  ))
-                )}
-              </tbody>
-            </Table>
+      <div
+        className=" p-5 favofrite"
+        style={{ height: "100%", minHeight: "100vh" }}
+      >
+        {fav.length === 0 ? (
+          <div className="" style={{ height: "100vh" }}>
+            <h5 className="bg-secondary p-5 text-center text-white">
+              {isEnglish
+                ? "No favorites added yet"
+                : "لم يتم إضافة أي عناصر للمفضلة بعد"}
+            </h5>
           </div>
-        </div>
+        ) : (
+          <Row xs={1} md={1} lg={3}>
+            {fav.map((product, index) => (
+              <Col key={index} className="bg-white col-color rounded mb-2">
+                <div className="line my-2 d-flex justify-content-between align-items-center shadow p-2 rounded">
+                  <div className="box1 me-1">
+                    <Image className="min-pic" src={product.image} />
+                  </div>
+                  <div className="box2 text-black">
+                    <p className="m-0">{product.title}</p>
+                    <p className="m-0">${product.price}</p>
+                  </div>
+                  <Button
+                    variant="danger"
+                    onClick={() => dispatch(deleteFromFav(product))}
+                  >
+                    <FontAwesomeIcon icon={faX} />
+                  </Button>
+                </div>
+              </Col>
+            ))}
+          </Row>
+        )}
       </div>
     </>
   );

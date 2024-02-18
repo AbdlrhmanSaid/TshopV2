@@ -148,7 +148,10 @@ function NavbarApp() {
                       <Button variant="secondary" onClick={handleCloseLogout}>
                         Cancel
                       </Button>
-                      <Button variant="primary" onClick={handleLogout}>
+                      <Button
+                        variant="primary"
+                        onClick={() => window.location.reload()}
+                      >
                         Logout
                       </Button>
                     </Modal.Footer>

@@ -16,7 +16,7 @@ function App() {
   return (
     <div className="App">
       <NavbarApp />
-      <div className=" mb-4 overflow-hidden p-0 ">
+      <div className="   p-0 ">
         <Routes>
           <Route path="/" element={<MaimPage />} />
           <Route path="/shop" element={<Homepage />} />

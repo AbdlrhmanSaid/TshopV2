@@ -25,6 +25,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { Container } from "react-bootstrap";
+import Placeholder from "react-bootstrap/Placeholder";
+import loadImg from "../imgs/load.png";
 
 export const Homepage = () => {
   const dispatch = useDispatch();
@@ -201,14 +203,87 @@ export const Homepage = () => {
       <div className="prodsMain">
         <Container>
           {loading ? (
-            <div
-              className="spinners d-flex justify-content-center "
-              style={{ height: "50vh" }}
-            >
-              <Spinner animation="border m-3" variant="primary" />
-              <Spinner animation="border m-3" variant="primary" />
-              <Spinner animation="border m-3" variant="primary" />
-            </div>
+            <>
+              <div className="loadDiv h-50 my-4">
+                <Row
+                  xs={1}
+                  md={2}
+                  lg={3}
+                  className="m-auto gap-4 justify-content-center "
+                >
+                  <Card
+                    style={{ width: "18rem" }}
+                    className="overflow-hidden p-3 text-center"
+                  >
+                    <div
+                      className="spinners d-flex justify-content-center "
+                      style={{ height: "50vh" }}
+                    >
+                      <Spinner animation="border m-3" variant="primary" />
+                    </div>
+                    <Card.Body>
+                      <Placeholder as={Card.Title} animation="glow">
+                        <Placeholder xs={6} />
+                      </Placeholder>
+                      <Placeholder
+                        as={Card.Text}
+                        animation="glow"
+                        className="text-center"
+                      >
+                        <Placeholder xs={4} />
+                        <br /> <Placeholder xs={4} />
+                        <br /> <Placeholder xs={4} />
+                      </Placeholder>
+                      <Placeholder.Button variant="primary" xs={6} />
+                    </Card.Body>
+                  </Card>
+                  <Card
+                    style={{ width: "18rem" }}
+                    className="overflow-hidden p-3 text-center"
+                  >
+                    <div
+                      className="spinners d-flex justify-content-center "
+                      style={{ height: "50vh" }}
+                    >
+                      <Spinner animation="border m-3" variant="primary" />
+                    </div>
+                    <Card.Body>
+                      <Placeholder as={Card.Title} animation="glow">
+                        <Placeholder xs={6} />
+                      </Placeholder>
+                      <Placeholder as={Card.Text} animation="glow">
+                        <Placeholder xs={3} /> <Placeholder xs={4} />{" "}
+                        <Placeholder xs={2} /> <Placeholder xs={6} />{" "}
+                        <Placeholder xs={4} />
+                      </Placeholder>
+                      <Placeholder.Button variant="primary" xs={6} />
+                    </Card.Body>
+                  </Card>
+                  <Card
+                    style={{ width: "18rem" }}
+                    className="overflow-hidden p-3 text-center"
+                  >
+                    <div
+                      className="spinners d-flex justify-content-center "
+                      style={{ height: "50vh" }}
+                    >
+                      <Spinner animation="border m-3" variant="primary" />
+                    </div>
+                    <Card.Body>
+                      <Placeholder as={Card.Title} animation="glow">
+                        <Placeholder xs={6} />
+                      </Placeholder>
+                      <Placeholder as={Card.Text} animation="glow">
+                        <Placeholder xs={3} /> <Placeholder xs={4} />{" "}
+                        <Placeholder xs={2} /> <Placeholder xs={6} />{" "}
+                        <Placeholder xs={4} />
+                      </Placeholder>
+                      <Placeholder.Button variant="primary" xs={6} />
+                    </Card.Body>
+                  </Card>
+                </Row>
+              </div>
+            </>
           ) : (
             <>
               <h2
@@ -326,10 +401,7 @@ export const Homepage = () => {
                       className="mb-3 bg-white"
                       style={{ transition: "0.5s" }}
                     >
-                      <div
-                        className="box rounded border shadow w-100 h-100 overflow-hidden"
-                        style={{ height: "400px" }}
-                      >
+                      <div className="boxMain rounded shadow w-100 h-100 overflow-hidden">
                         <div className="half1 m-auto p-3 w-50 h-50 position-relative">
                           <Image
                             src={product.image}

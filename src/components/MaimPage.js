@@ -20,7 +20,7 @@ export const MaimPage = () => {
       <div className="intro">
         <h2 className="logoName text-center  bg-dark text-white  p-2">
           Shop
-          <span className="bg-white text-black px-1">
+          <span className=" Elogo  px-1">
             <FontAwesomeIcon icon={faE} />
           </span>
           mpire
