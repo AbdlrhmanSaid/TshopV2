@@ -30,8 +30,11 @@ export const Favorites = () => {
         ) : (
           <Row xs={1} md={1} lg={3}>
             {fav.map((product, index) => (
-              <Col key={index} className="bg-white col-color rounded mb-2">
-                <div className="line my-2 d-flex justify-content-between align-items-center shadow p-2 rounded">
+              <Col
+                key={index}
+                className=" col-color rounded mb-2 align-items-center"
+              >
+                <div className="line bg-white my-2 d-flex justify-content-between h-100 align-items-center shadow p-2 rounded">
                   <div className="box1 me-1">
                     <Image className="min-pic" src={product.image} />
                   </div>

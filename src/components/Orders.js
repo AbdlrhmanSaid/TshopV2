@@ -80,7 +80,7 @@ function Orders() {
 
   return (
     <>
-      <div className="orders" style={{ height: "90vh" }}>
+      <div className="orders" style={{ height: "100%", minHeight: "100vh" }}>
         <Container>
           <h3>
             {isEnglish ? "Orders" : "الطلبات"} : {orders.length}
@@ -125,8 +125,8 @@ function Orders() {
               </Button>
               <Row xs={1} md={2} lg={3}>
                 {orders.map((order) => (
-                  <Col key={order.orderNumber} className="mt-3 p-3">
-                    <Card style={{ width: "100%" }}>
+                  <Col key={order.orderNumber} className="mt-3 p-3 ">
+                    <Card style={{ width: "100%" }} className=" shadow">
                       <Card.Body>
                         <h2>
                           {isEnglish ? "Order Number" : "رقم الطلب"}:{" "}
@@ -196,7 +196,7 @@ function Orders() {
               <Row xs={1} md={1} lg={1}>
                 {selectedOrder.products.map((product, index) => (
                   <Col key={index} className="bg-white col-color rounded mb-2">
-                    <div className="line my-2 d-flex justify-content-between align-items-center">
+                    <div className="line my-2 d-flex justify-content-between align-items-center ">
                       <div className="box1 me-1">
                         <Image className="min-pic" src={product.image} />
                       </div>

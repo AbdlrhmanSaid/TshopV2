@@ -76,7 +76,7 @@ const SettingsPage = () => {
     <div className="form-group">
       <label htmlFor="cityOption">
         <FontAwesomeIcon icon={faCity} className="me-2" />
-        City Option
+        {isEnglish ? "City Option" : "المنطقة"}
       </label>
       <select
         className="form-control"
@@ -117,13 +117,15 @@ const SettingsPage = () => {
         <div className="container mt-4">
           <div className="card">
             <div className="card-body">
-              <h5 className="card-title">Settings</h5>
+              <h5 className="card-title">
+                {isEnglish ? "Settings" : "الاعدادات"}
+              </h5>
 
               {/* Name */}
               <div className="form-group">
                 <label htmlFor="name">
                   <FontAwesomeIcon icon={faUser} className="me-2" />
-                  Name
+                  {isEnglish ? "Name" : "الاسم "}
                 </label>
                 <input
                   type="text"
@@ -138,7 +140,7 @@ const SettingsPage = () => {
               <div className="form-group">
                 <label htmlFor="city">
                   <FontAwesomeIcon icon={faGlobe} className="me-2" />
-                  City
+                  {isEnglish ? "City" : "المدينه"}
                 </label>
                 <select
                   className="form-control"
@@ -165,7 +167,7 @@ const SettingsPage = () => {
               <div className="form-group">
                 <label htmlFor="address">
                   <FontAwesomeIcon icon={faMapMarkerAlt} className="me-2" />
-                  Address
+                  {isEnglish ? "Address" : "العنوان"}
                 </label>
                 <input
                   type="text"
@@ -180,7 +182,7 @@ const SettingsPage = () => {
               <div className="form-group">
                 <label htmlFor="age">
                   <FontAwesomeIcon icon={faBirthdayCake} className="me-2" />
-                  Age
+                  {isEnglish ? "Age" : "السن"}
                 </label>
                 <input
                   type="Number"
@@ -195,7 +197,7 @@ const SettingsPage = () => {
               <div className="form-group">
                 <label htmlFor="phoneNumber">
                   <FontAwesomeIcon icon={faPhone} className="me-2" />
-                  Phone Number
+                  {isEnglish ? " Phone Number" : "الهاتف"}
                 </label>
                 <input
                   type="tel"
@@ -209,7 +211,7 @@ const SettingsPage = () => {
               <div className="form-group">
                 <label htmlFor="phoneNumber">
                   <FontAwesomeIcon icon={faEnvelope} className="me-2" />
-                  Email
+                  {isEnglish ? "Email" : "البريد"}
                 </label>
                 <input
                   type="email"
@@ -226,7 +228,7 @@ const SettingsPage = () => {
                   onClick={handleSave}
                 >
                   <FontAwesomeIcon icon={faSave} className="me-2" />
-                  Save
+                  {isEnglish ? "Save" : "حفظ"}
                 </Button>
               </Link>
               <Link to={"/"} className="linkbtn">
@@ -235,7 +237,7 @@ const SettingsPage = () => {
                   onClick={() => console.log("Cancel button clicked")}
                 >
                   <FontAwesomeIcon icon={faTimes} className="me-2" />
-                  Cancel
+                  {isEnglish ? "Cancel" : "الغاء"}
                 </Button>
               </Link>
             </div>

@@ -224,6 +224,10 @@ a {
   background-repeat: no-repeat;
   background-position: center;
 }
+.contact {
+  background-image: url(./imgs/contact.png);
+  background-position: center;
+}
 /* media screen */
 @media (max-width: 767px) {
   .btns {

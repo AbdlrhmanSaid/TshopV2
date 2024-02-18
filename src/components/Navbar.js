@@ -82,20 +82,11 @@ function NavbarApp() {
                   <FontAwesomeIcon icon={faShop} />
                 </Nav.Link>
               </Link>
-              <Link to="/Profile" className="text-decoration-none">
-                <Nav.Link href="#Profile">
-                  <FontAwesomeIcon icon={faUser} />
-                </Nav.Link>
-              </Link>
+
               <NavDropdown
                 title={isEnglish ? "More" : "المزيد"}
                 id="basic-nav-dropdown"
               >
-                <Link to="/Settings" className="text-decoration-none">
-                  <NavDropdown.Item href="#Settings">
-                    {isEnglish ? "Settings" : "الاعدادات"}
-                  </NavDropdown.Item>
-                </Link>
                 <Link to="/Orders" className="text-decoration-none">
                   <NavDropdown.Item href="#Orders">
                     {isEnglish ? "Orders" : "الطلبات"}
@@ -128,15 +119,35 @@ function NavbarApp() {
             {isLogin ? (
               <>
                 <div className="details text-white d-flex align-items-center ">
-                  <FontAwesomeIcon icon={faUser} className="me-2" />
-                  <p className="m-0">{userData.username}</p>
-                  <Button
-                    variant="primary"
-                    onClick={handleShowLogout}
-                    className="ms-3 logbtn"
+                  <NavDropdown
+                    title={<FontAwesomeIcon icon={faUser} className="" />}
+                    id="basic-nav-dropdown "
                   >
-                    <FontAwesomeIcon className="" icon={faRightToBracket} />{" "}
-                  </Button>
+                    <NavDropdown.Item>
+                      <Link to="/Profile" className="text-decoration-none">
+                        <NavDropdown.Item href="#Settings">
+                          {isEnglish ? "Profile" : "الملف الشخصي"}
+                        </NavDropdown.Item>
+                      </Link>
+                    </NavDropdown.Item>
+                    <NavDropdown.Item>
+                      <Link to="/Settings" className="text-decoration-none">
+                        <NavDropdown.Item href="#Settings">
+                          {isEnglish ? "Settings" : "الاعدادات"}
+                        </NavDropdown.Item>
+                      </Link>
+                    </NavDropdown.Item>
+                    <NavDropdown.Item>
+                      <Button
+                        variant="primary"
+                        onClick={handleShowLogout}
+                        className=" w-100 logbtn"
+                      >
+                        <FontAwesomeIcon className="" icon={faRightToBracket} />{" "}
+                      </Button>
+                    </NavDropdown.Item>
+                  </NavDropdown>
+                  <p className="mx-3 m-0">{userData.username}</p>
                 </div>
                 {isEnglish ? (
                   <Modal show={show} onHide={handleCloseLogout}>

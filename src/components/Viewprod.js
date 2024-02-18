@@ -44,7 +44,7 @@ export const Viewprod = () => {
       ) : (
         product && (
           <div className="box-view m-3 text-center">
-            <div className="half1 d-flex align-items-center">
+            <div className="half1 ">
               <div className="image overflow-hidden m-3 text-center w-100">
                 <img
                   src={product.image}
@@ -52,13 +52,13 @@ export const Viewprod = () => {
                 />
               </div>
             </div>
-            <div className="half2 p-3  text-center">
+            <div className="half2 p-3 text-center">
               <Card.Body>
                 <Card.Title>{product.title}</Card.Title>
-                <Card.Text>{product.description}</Card.Text>
-                <Card.Text className="text-center">
+                <p>{product.description}</p>
+                <p className="text-center">
                   <h2 className="text-center w-100">{product.price}$</h2>
-                </Card.Text>
+                </p>
                 <Link to={"/shop"} className="m-auto">
                   <Button variant="primary">
                     {isEnglish ? "Back" : "رجوع"}

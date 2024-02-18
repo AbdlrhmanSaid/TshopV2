@@ -36,7 +36,7 @@ const Profile = () => {
     <>
       {isLogin ? (
         <Container
-          style={{ height: "100vh" }}
+          style={{ height: "100%", minHeight: "100vh" }}
           className="d-flex justify-content-center align-items-center"
         >
           <div className="container mt-4 d-flex justify-content-between align-items-center my-3">
@@ -78,7 +78,7 @@ const Profile = () => {
                   onClick={() => console.log("Edit button clicked")}
                 >
                   <FontAwesomeIcon icon={faEdit} className="me-2" />
-                  <strong>{isEnglish ? "Edit:" : "تعديل :"}</strong>
+                  <strong>{isEnglish ? "Edit" : "تعديل "}</strong>
                 </Link>
               </div>
             </div>
