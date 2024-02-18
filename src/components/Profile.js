@@ -17,6 +17,7 @@ import Alert from "react-bootstrap/Alert";
 import Button from "react-bootstrap/Button";
 import { Container } from "react-bootstrap";
 import img1 from "../imgs/loginPhoto.png";
+import img2 from "../imgs/user.png";
 
 const Profile = () => {
   const userData = useSelector(selectUserData);
@@ -32,11 +33,14 @@ const Profile = () => {
   }
 
   return (
-    <Container>
+    <Container
+      style={{ height: "100vh" }}
+      className="d-flex justify-content-center align-items-center"
+    >
       <>
         {isLogin ? (
-          <div className="container mt-4">
-            <div className="card">
+          <div className="container mt-4 d-flex justify-content-between align-items-center my-3">
+            <div className="card w-100">
               <div className="card-body">
                 <h5 className="card-title">
                   {isEnglish ? "Profile Information" : "معلوماتك الشخصية"}
@@ -77,6 +81,9 @@ const Profile = () => {
                   <strong>{isEnglish ? "Edit:" : "تعديل :"}</strong>
                 </Link>
               </div>
+            </div>
+            <div className="image text-center sm-hide">
+              <img src={img2} className="w-50" />
             </div>
           </div>
         ) : (

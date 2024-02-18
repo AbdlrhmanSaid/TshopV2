@@ -286,5 +286,8 @@ a {
   .card-red {
     width: 50%;
   }
+  .sm-hide {
+    display: none;
+  }
 }
 /* media screen */
