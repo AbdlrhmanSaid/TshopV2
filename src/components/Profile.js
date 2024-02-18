@@ -33,12 +33,12 @@ const Profile = () => {
   }
 
   return (
-    <Container
-      style={{ height: "100vh" }}
-      className="d-flex justify-content-center align-items-center"
-    >
-      <>
-        {isLogin ? (
+    <>
+      {isLogin ? (
+        <Container
+          style={{ height: "100vh" }}
+          className="d-flex justify-content-center align-items-center"
+        >
           <div className="container mt-4 d-flex justify-content-between align-items-center my-3">
             <div className="card w-100">
               <div className="card-body">
@@ -86,30 +86,30 @@ const Profile = () => {
               <img src={img2} className="w-50" />
             </div>
           </div>
-        ) : (
-          <div className="m-5">
-            <div className="boxAlert d-flex justify-content-between">
-              <div className="half1">
-                <img src={img1} className="h-75" />
-              </div>
-              <div className="half2 w-100">
-                <Alert variant="secondary" style={{ margin: "15% 0" }}>
-                  <Alert.Heading>
-                    {isEnglish ? " Please Login First" : "سجل الدخول اولا"}
-                  </Alert.Heading>
-                  <hr />
-                  <Link to={"/Login"} className="text-center w-100">
-                    <Button variant="primary" className="m-auto">
-                      {isEnglish ? " Login" : " سجل الدخول"}
-                    </Button>{" "}
-                  </Link>
-                </Alert>
-              </div>
+        </Container>
+      ) : (
+        <div className="m-5">
+          <div className="boxAlert d-flex justify-content-between">
+            <div className="half1">
+              <img src={img1} className="h-75" />
+            </div>
+            <div className="half2 w-100">
+              <Alert variant="secondary" style={{ margin: "15% 0" }}>
+                <Alert.Heading>
+                  {isEnglish ? " Please Login First" : "سجل الدخول اولا"}
+                </Alert.Heading>
+                <hr />
+                <Link to={"/Login"} className="text-center w-100">
+                  <Button variant="primary" className="m-auto">
+                    {isEnglish ? " Login" : " سجل الدخول"}
+                  </Button>{" "}
+                </Link>
+              </Alert>
             </div>
           </div>
-        )}
-      </>
-    </Container>
+        </div>
+      )}
+    </>
   );
 };
 

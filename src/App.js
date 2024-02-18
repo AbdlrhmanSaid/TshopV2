@@ -1,7 +1,7 @@
 import "./App.css";
 import NavbarApp from "./components/Navbar";
 import { Login } from "./components/Login";
-import { Homepage } from "./components/Homepage";
+import Homepage from "./components/Homepage";
 import { Routes, Route } from "react-router-dom";
 import Footer from "./components/Footer";
 import Viewprod from "./components/Viewprod";

@@ -55,7 +55,7 @@ const SettingsPage = () => {
 
   const [name, setName] = useState(userData.username);
   const [address, setAddress] = useState(
-    `${userData.address.city},${userData.address.details}`
+    `${userData.address.city},${userData.address.twon},${userData.address.details}`
   );
   const [selectedCity, setSelectedCity] = useState(userData.address.city);
   const [selectedCityOptions, setSelectedCityOptions] = useState(

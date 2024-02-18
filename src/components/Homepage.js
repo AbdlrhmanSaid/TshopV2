@@ -28,7 +28,7 @@ import { Container } from "react-bootstrap";
 import Placeholder from "react-bootstrap/Placeholder";
 import loadImg from "../imgs/load.png";
 
-export const Homepage = () => {
+const Homepage = () => {
   const dispatch = useDispatch();
   const isEnglish = useSelector(selectLanguage);
   const isLogin = useSelector((state) => state.user.isLogin);
@@ -479,3 +479,4 @@ export const Homepage = () => {
     </>
   );
 };
+export default Homepage;
