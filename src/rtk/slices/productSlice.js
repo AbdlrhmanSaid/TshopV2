@@ -44,7 +44,5 @@ const productSlice = createSlice({
   },
 });
 
-// export const {fetchProducts} productSlice.actions;
-
 export default productSlice.reducer;
 // https://fakestoreapi.com/products http://localhost:9000/products

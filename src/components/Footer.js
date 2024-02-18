@@ -14,7 +14,7 @@ const Footer = () => {
             {isEnglish ? (
               <>
                 <h5>Contact Us</h5>
-                <p>Email: bodesaid3@gmail.com</p>
+                <p>Email: AbdelrhmanSaid996@gmail.com</p>
                 <p>Phone: 01207634290</p>
               </>
             ) : (

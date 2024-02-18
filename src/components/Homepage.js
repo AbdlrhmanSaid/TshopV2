@@ -37,6 +37,7 @@ const Homepage = () => {
   const [loading, setLoading] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [currentImages, setCurrentImages] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -62,8 +63,14 @@ const Homepage = () => {
   );
 
   const filteredProducts = selectedCategory
-    ? products.filter((product) => product.category === selectedCategory)
-    : products;
+    ? products.filter(
+        (product) =>
+          product.category === selectedCategory &&
+          product.title.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+    : products.filter((product) =>
+        product.title.toLowerCase().includes(searchTerm.toLowerCase())
+      );
 
   const handleNext = () => {
     setCurrentImages((prevImages) => [...prevImages.slice(1), prevImages[0]]);
@@ -292,32 +299,6 @@ const Homepage = () => {
               >
                 {isEnglish ? " Best seller " : " الاكثر مبيعا "}
               </h2>
-              <Form
-                inline
-                onSubmit={(e) => e.preventDefault()}
-                className="my-4 flex-nowrap"
-              >
-                <Row className="justify-content-center flex-nowrap">
-                  <Col xs="auto">
-                    <Form.Control
-                      type="text"
-                      placeholder={isEnglish ? "Search" : "بحث"}
-                      className="mr-sm-2"
-                    />
-                  </Col>
-                  <Col xs="auto">
-                    {isLogin ? (
-                      <Button type="submit">
-                        <FontAwesomeIcon icon={faMagnifyingGlass} />
-                      </Button>
-                    ) : (
-                      <Button type="submit" onClick={() => notLogin()}>
-                        <FontAwesomeIcon icon={faMagnifyingGlass} />
-                      </Button>
-                    )}
-                  </Col>
-                </Row>
-              </Form>
               <Row
                 className="justify-content-center my-3"
                 style={{ flex: "1" }}
@@ -387,89 +368,116 @@ const Homepage = () => {
                   </div>
                 </Col>
               </Row>
-              <div className="productsShow" id="categories">
-                <h2
-                  className="m-2 bg-dark text-white p-2 rounded"
-                  style={{ width: "fit-content" }}
-                >
-                  {isEnglish ? " Products categories " : "  فئات المنتجات "}
-                </h2>
-                <Row xs={1} md={2} lg={3} className="m-3">
-                  {filteredProducts.map((product) => (
-                    <Col
-                      key={product.id}
-                      className="mb-3 bg-white"
-                      style={{ transition: "0.5s" }}
-                    >
-                      <div className="boxMain rounded shadow w-100 h-100 overflow-hidden">
-                        <div className="half1 m-auto p-3 w-50 h-50 position-relative">
-                          <Image
-                            src={product.image}
-                            className="w-100 h-100 prod-img "
-                            rounded
-                          />
-                          <p className="categoryNameTitle position-absolute m-0 px-3 mt-1">
-                            {product.category}
-                          </p>
-                          <div className="btnsAction d-flex gap-1 justify-content-end position-absolute">
-                            {isLogin ? (
-                              <>
-                                <Button
-                                  variant="primary"
-                                  onClick={() => dispatch(addToCart(product))}
-                                  className="rounded-circle"
-                                >
-                                  <FontAwesomeIcon icon={faPlus} />
-                                </Button>
-                                <Button
-                                  variant="danger"
-                                  onClick={() => addedToFev(product)}
-                                  className="rounded-circle"
-                                >
-                                  <FontAwesomeIcon icon={faHeart} />
-                                </Button>
-                              </>
-                            ) : (
-                              <>
-                                <Button
-                                  variant="primary"
-                                  onClick={() => notLogin()}
-                                  className="rounded-circle"
-                                >
-                                  <FontAwesomeIcon icon={faPlus} />
-                                </Button>
-                                <Button
-                                  variant="danger"
-                                  onClick={() => notLogin()}
-                                  className="rounded-circle"
-                                >
-                                  <FontAwesomeIcon icon={faHeart} />
-                                </Button>
-                              </>
-                            )}
-                            <Link to={`/Product/${product.id}`}>
-                              <Button
-                                variant="success"
-                                className="rounded-circle"
-                              >
-                                <FontAwesomeIcon
-                                  icon={faArrowUpRightFromSquare}
-                                />
-                              </Button>
-                            </Link>
-                          </div>
-                        </div>
-                        <div className="headerHalf2 d-flex align-items-center justify-content-between shadow  h-50 px-3">
-                          <div className="info mt-4 p-2 ">
-                            <p className="m-0">{product.title}</p>
-                            <h3>{product.price} $</h3>
-                          </div>
-                        </div>
-                      </div>
-                    </Col>
-                  ))}
+              <Form
+                inline
+                onSubmit={(e) => e.preventDefault()}
+                className="my-4 flex-nowrap bg-dark p-1 rounded w-50 m-auto"
+              >
+                <Row className="justify-content-center flex-nowrap  ">
+                  <Col xs="auto" className="w-100">
+                    <Form.Control
+                      type="text"
+                      placeholder={
+                        isEnglish ? "Search by Name" : " بحث بواسطة الاسم"
+                      }
+                      className="mr-sm-2"
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                    />
+                  </Col>
                 </Row>
-              </div>
+              </Form>
+              {filteredProducts.length === 0 ? (
+                "not found"
+              ) : (
+                <>
+                  <div className="productsShow" id="categories">
+                    <h2
+                      className="m-2 bg-dark text-white p-2 rounded"
+                      style={{ width: "fit-content" }}
+                    >
+                      {isEnglish ? " Products categories " : "  فئات المنتجات "}
+                    </h2>
+                    <Row xs={1} md={2} lg={3} className="m-3">
+                      {filteredProducts.map((product) => (
+                        <Col
+                          key={product.id}
+                          className="mb-3 bg-white"
+                          style={{ transition: "0.5s" }}
+                        >
+                          <div className="boxMain rounded shadow w-100 h-100 overflow-hidden">
+                            <div className="half1 m-auto p-3 w-50 h-50 position-relative">
+                              <Image
+                                src={product.image}
+                                className="w-100 h-100 prod-img "
+                                rounded
+                              />
+                              <p className="categoryNameTitle position-absolute m-0 px-3 mt-1">
+                                {product.category}
+                              </p>
+                              <div className="btnsAction d-flex gap-1 justify-content-end position-absolute">
+                                {isLogin ? (
+                                  <>
+                                    <Button
+                                      variant="primary"
+                                      onClick={() =>
+                                        dispatch(addToCart(product))
+                                      }
+                                      className="rounded-circle"
+                                    >
+                                      <FontAwesomeIcon icon={faPlus} />
+                                    </Button>
+                                    <Button
+                                      variant="danger"
+                                      onClick={() => addedToFev(product)}
+                                      className="rounded-circle"
+                                    >
+                                      <FontAwesomeIcon icon={faHeart} />
+                                    </Button>
+                                  </>
+                                ) : (
+                                  <>
+                                    <Button
+                                      variant="primary"
+                                      onClick={() => notLogin()}
+                                      className="rounded-circle"
+                                    >
+                                      <FontAwesomeIcon icon={faPlus} />
+                                    </Button>
+                                    <Button
+                                      variant="danger"
+                                      onClick={() => notLogin()}
+                                      className="rounded-circle"
+                                    >
+                                      <FontAwesomeIcon icon={faHeart} />
+                                    </Button>
+                                  </>
+                                )}
+                                <Link to={`/Product/${product.id}`}>
+                                  <Button
+                                    variant="success"
+                                    className="rounded-circle"
+                                  >
+                                    <FontAwesomeIcon
+                                      icon={faArrowUpRightFromSquare}
+                                    />
+                                  </Button>
+                                </Link>
+                              </div>
+                            </div>
+                            <div className="headerHalf2 d-flex align-items-center justify-content-between shadow  h-50 px-3">
+                              <div className="info mt-4 p-2 ">
+                                <p className="m-0">{product.title}</p>
+                                <h3>{product.price} $</h3>
+                              </div>
+                            </div>
+                          </div>
+                        </Col>
+                      ))}
+                    </Row>
+                  </div>
+                </>
+              )}
             </>
           )}
           <Cart />
