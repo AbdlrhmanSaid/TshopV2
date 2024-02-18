@@ -175,7 +175,7 @@ footer a {
 }
 
 .Elogo {
-  animation: change-colors 5s infinite linear; /* تحديد الأنيميشن */
+  animation: change-colors 5s infinite linear;
 }
 
 @keyframes change-colors {
@@ -219,6 +219,23 @@ a {
   border-radius: 10px;
   left: -60px;
 }
+.headContent {
+  position: relative;
+}
+.headContent h1 {
+  font-size: 100px;
+  letter-spacing: 0px;
+  color: #33333321;
+  font-weight: 800;
+}
+.headContent h4 {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 62px;
+  font-size: 50px;
+  font-weight: 900;
+}
 .favofrite {
   background-image: url(./imgs//favorite.png);
   background-repeat: no-repeat;
@@ -227,6 +244,30 @@ a {
 .contact {
   background-image: url(./imgs/contact.png);
   background-position: center;
+}
+.btm-btn {
+  position: absolute;
+  top: 79%;
+  animation: top-bottm 1s infinite linear;
+}
+
+@keyframes top-bottm {
+  0% {
+    top: 79%;
+  }
+  50% {
+    top: 81%;
+  }
+  to {
+    top: 79%;
+  }
+}
+
+.cardTset img {
+  position: absolute;
+  right: -10px;
+  top: -28px;
+  width: 55px;
 }
 /* media screen */
 @media (max-width: 767px) {
@@ -292,6 +333,20 @@ a {
   }
   .sm-hide {
     display: none;
+  }
+  .intro {
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .intro img {
+    margin: 0 0 0 110px;
+  }
+  .headContent h1 {
+    font-size: 40px;
+  }
+  .headContent h4 {
+    font-size: 20px;
+    top: 30px;
   }
 }
 /* media screen */
