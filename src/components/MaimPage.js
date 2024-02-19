@@ -7,6 +7,10 @@ import {
   faE,
   faAngleRight,
   faAnglesDown,
+  faStar,
+  faCheck,
+  faInfinity,
+  faFire,
 } from "@fortawesome/free-solid-svg-icons";
 import shopImg from "../imgs/shop1.png";
 import clothes from "../imgs/clothes.png";
@@ -20,6 +24,7 @@ import Button from "react-bootstrap/Button";
 import { Col, Row } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import Image from "react-bootstrap/Image";
+import ListGroup from "react-bootstrap/ListGroup";
 
 export const MaimPage = () => {
   const isEnglish = useSelector(selectLanguage);
@@ -138,7 +143,7 @@ export const MaimPage = () => {
                 {isEnglish ? "Our Products" : "منتاجتنا"}
               </h4>
             </div>
-            <div className="box1 boxContent my-3 d-flex justify-content-center align-items-center">
+            <div className="box1 boxContent darkInfo p-3 rounded my-3 d-flex justify-content-center align-items-center">
               <img src={shopImg} />
               <div className="text h5">
                 {isEnglish
@@ -154,7 +159,7 @@ export const MaimPage = () => {
                   : "نقدم تشكيلة واسعة من الملابس العصرية وذات الجودة العالية التي تناسب جميع الأذواق والمناسبات. سواء كنت تبحث عن ملابس كاجوال لليوميات أو فساتين ساحرة للمناسبات الخاصة، فإننا نوفر لك كل ما تحتاجه لإطلالة مميزة ومثيرة"}
               </div>
             </div>
-            <div className="box3 boxContent my-3  text-center">
+            <div className="box3 boxContent my-3 darkInfo p-3 rounded text-center">
               <img src={electronics} />
               <div className="text h5">
                 {isEnglish
@@ -170,7 +175,7 @@ export const MaimPage = () => {
                   : "استكمل إطلالتك بمجموعتنا الرائعة من المجوهرات الأنيقة والمميزة. سواء كنت تبحث عن قطع فاخرة لتبرز أناقتك في المناسبات الخاصة أو قطع يومية لتكمل إطلالتك اليومية، فإننا نقدم لك مجموعة متنوعة تناسب جميع الأذواق والاحتياجات."}
               </div>
             </div>
-            <div className="box5 boxContent my-3 d-flex justify-content-center align-items-center">
+            <div className="box5 boxContent my-3 darkInfo p-3 rounded d-flex justify-content-center align-items-center">
               <div className="text h5">
                 {isEnglish
                   ? "Complete your look with our wonderful collection of elegant and distinctive jewelry. Whether you're looking for luxurious pieces to highlight your elegance at special occasions or everyday pieces to complement your daily look, we offer you a variety that suits all tastes and needs."
@@ -219,6 +224,13 @@ export const MaimPage = () => {
                         smooth and easy
                       </Card.Text>
                     </Card.Body>
+                    <div className="stars mb-3">
+                      <FontAwesomeIcon icon={faStar} className="text-warning" />
+                      <FontAwesomeIcon icon={faStar} className="text-warning" />
+                      <FontAwesomeIcon icon={faStar} className="text-warning" />
+                      <FontAwesomeIcon icon={faStar} className="text-warning" />
+                      <FontAwesomeIcon icon={faStar} className="text-warning" />
+                    </div>
                   </Card>
                 </Col>
                 <Col className="my-3">
@@ -237,6 +249,13 @@ export const MaimPage = () => {
                         the products and the customer service are top-notch
                       </Card.Text>
                     </Card.Body>
+                    <div className="stars mb-3">
+                      <FontAwesomeIcon icon={faStar} className="text-warning" />
+                      <FontAwesomeIcon icon={faStar} className="text-warning" />
+                      <FontAwesomeIcon icon={faStar} className="text-warning" />
+                      <FontAwesomeIcon icon={faStar} className="text-warning" />
+                      <FontAwesomeIcon icon={faStar} />
+                    </div>
                   </Card>
                 </Col>
                 <Col className="my-3">
@@ -256,6 +275,13 @@ export const MaimPage = () => {
                         bonus
                       </Card.Text>
                     </Card.Body>
+                    <div className="stars mb-3">
+                      <FontAwesomeIcon icon={faStar} className="text-warning" />
+                      <FontAwesomeIcon icon={faStar} className="text-warning" />
+                      <FontAwesomeIcon icon={faStar} className="text-warning" />
+                      <FontAwesomeIcon icon={faStar} className="text-warning" />
+                      <FontAwesomeIcon icon={faStar} />
+                    </div>
                   </Card>
                 </Col>
                 <Col className="my-3">
@@ -275,7 +301,271 @@ export const MaimPage = () => {
                         coming back for more
                       </Card.Text>
                     </Card.Body>
+                    <div className="stars mb-3">
+                      <FontAwesomeIcon icon={faStar} className="text-warning" />
+                      <FontAwesomeIcon icon={faStar} className="text-warning" />
+                      <FontAwesomeIcon icon={faStar} className="text-warning" />
+                      <FontAwesomeIcon icon={faStar} className="text-warning" />
+                      <FontAwesomeIcon icon={faStar} className="text-warning" />
+                    </div>
                   </Card>
+                </Col>
+              </Row>
+            </div>
+          </div>
+          <div className="plansMain">
+            <div className="headContent my-5 ">
+              <h1 className="text-center">
+                {isEnglish ? "PRICING PLANS" : "خطط الاسعار"}
+              </h1>
+              <h4 className="text-center">
+                {isEnglish ? "PRICING PLANS" : "خطط الاسعار"}
+              </h4>
+            </div>
+            <div className="plans position-relative">
+              <Row xs={1} xm={1} xl={3}>
+                <Col>
+                  <div className="box1">
+                    <Card>
+                      <Card.Body>
+                        <Card.Title className="text-center">
+                          <h2>{isEnglish ? "Basic" : "أساسي"}</h2>
+                          <div class="price my-3 h1">
+                            <span class="amount">
+                              {isEnglish ? "Free" : "مجاني"}
+                            </span>
+                            <span class="time text-secondary h5">
+                              <FontAwesomeIcon icon={faInfinity} />
+                            </span>
+                          </div>
+                        </Card.Title>
+                        <ListGroup className="list-group-flush">
+                          <ListGroup.Item>
+                            <FontAwesomeIcon icon={faCheck} className="me-3 " />
+                            {isEnglish
+                              ? "Free shipping anywhere."
+                              : "شحن مجاني الي اي مكان"}
+                          </ListGroup.Item>
+                          <ListGroup.Item>
+                            <FontAwesomeIcon icon={faCheck} className="me-3" />
+                            {isEnglish
+                              ? "Priority booking for you."
+                              : "اولوية الحجز لك "}
+                          </ListGroup.Item>
+                          <ListGroup.Item>
+                            <FontAwesomeIcon icon={faCheck} className="me-3 " />
+                            {isEnglish
+                              ? "Exclusive offers just for you."
+                              : "عروض خاصه لك فقط"}
+                          </ListGroup.Item>
+                          <ListGroup.Item>
+                            <FontAwesomeIcon
+                              icon={faCheck}
+                              className="me-3 text-success"
+                            />
+                            {isEnglish
+                              ? "Continuous order tracking."
+                              : " المتابعة الدائمة للطلبات"}
+                          </ListGroup.Item>
+                          <ListGroup.Item>
+                            <FontAwesomeIcon
+                              icon={faCheck}
+                              className="me-3 text-success"
+                            />
+                            {isEnglish
+                              ? "Premium products for you."
+                              : " منتجات مميزه لك "}
+                          </ListGroup.Item>
+                          <ListGroup.Item>
+                            <FontAwesomeIcon
+                              icon={faCheck}
+                              className="me-3 text-success"
+                            />
+                            {isEnglish
+                              ? "Support available 24/7."
+                              : "الدعم متاح دائما "}
+                          </ListGroup.Item>
+                        </ListGroup>
+                        <Link className="text-center" to={"/Login"}>
+                          <Button className="my-3">
+                            {isEnglish ? "Join Now" : "انضم الان"}
+                          </Button>
+                        </Link>
+                      </Card.Body>
+                    </Card>
+                  </div>
+                </Col>
+                <Col>
+                  <div className="box2 Hot">
+                    <Card>
+                      <Card.Body>
+                        <Card.Title className="text-center">
+                          <h2>{isEnglish ? "Advanced" : "متقدم"}</h2>
+                          <div class="price my-3 h1">
+                            <span class="amount">$30</span>
+                            <span class="time text-secondary h5">
+                              {isEnglish ? (
+                                <>
+                                  {isEnglish ? "Per Month" : "للشهر"}
+                                  <span className="bg-danger text-light p-1 rounded mx-2">
+                                    {isEnglish ? "Hot" : "الاكثر طلب"}
+                                    <FontAwesomeIcon
+                                      icon={faFire}
+                                      className="mx-1"
+                                    />
+                                  </span>
+                                </>
+                              ) : (
+                                <>
+                                  <span className="bg-danger text-light p-1 rounded mx-2">
+                                    {isEnglish ? "Hot" : "الاكثر طلب"}
+                                    <FontAwesomeIcon
+                                      icon={faFire}
+                                      className="mx-1"
+                                    />
+                                  </span>
+                                  {isEnglish ? "Per Month" : "للشهر"}
+                                </>
+                              )}
+                            </span>
+                          </div>
+                        </Card.Title>
+                        <ListGroup className="list-group-flush">
+                          <ListGroup.Item>
+                            <FontAwesomeIcon icon={faCheck} className="me-3 " />
+                            {isEnglish
+                              ? "Free shipping anywhere."
+                              : "شحن مجاني الي اي مكان"}
+                          </ListGroup.Item>
+                          <ListGroup.Item>
+                            <FontAwesomeIcon icon={faCheck} className="me-3" />
+                            {isEnglish
+                              ? "Priority booking for you."
+                              : "اولوية الحجز لك "}
+                          </ListGroup.Item>
+                          <ListGroup.Item>
+                            <FontAwesomeIcon
+                              icon={faCheck}
+                              className="me-3 text-success"
+                            />
+                            {isEnglish
+                              ? "Exclusive offers just for you."
+                              : "عروض خاصه لك فقط"}
+                          </ListGroup.Item>
+                          <ListGroup.Item>
+                            <FontAwesomeIcon
+                              icon={faCheck}
+                              className="me-3 text-success"
+                            />
+                            {isEnglish
+                              ? "Continuous order tracking."
+                              : " المتابعة الدائمة للطلبات"}
+                          </ListGroup.Item>
+                          <ListGroup.Item>
+                            <FontAwesomeIcon
+                              icon={faCheck}
+                              className="me-3 text-success"
+                            />
+                            {isEnglish
+                              ? "Premium products for you."
+                              : " منتجات مميزه لك "}
+                          </ListGroup.Item>
+                          <ListGroup.Item>
+                            <FontAwesomeIcon
+                              icon={faCheck}
+                              className="me-3 text-success"
+                            />
+                            {isEnglish
+                              ? "Support available 24/7."
+                              : "الدعم متاح دائما "}
+                          </ListGroup.Item>
+                        </ListGroup>
+                        <Link className="text-center" to={"/Login"}>
+                          <Button className="my-3">
+                            {isEnglish ? "Join Now" : "انضم الان"}
+                          </Button>
+                        </Link>
+                      </Card.Body>
+                    </Card>
+                  </div>
+                </Col>
+                <Col>
+                  <div className="box3">
+                    <Card>
+                      <Card.Body>
+                        <Card.Title className="text-center">
+                          <h2>{isEnglish ? "Professional" : "احترافي"}</h2>
+                          <div class="price my-3 h1">
+                            <span class="amount">$45</span>
+                            <span class="time text-secondary h5">
+                              {isEnglish ? "Per Month" : "للشهر"}
+                            </span>
+                          </div>
+                        </Card.Title>
+                        <ListGroup className="list-group-flush">
+                          <ListGroup.Item>
+                            <FontAwesomeIcon
+                              icon={faCheck}
+                              className="me-3 text-success"
+                            />
+                            {isEnglish
+                              ? "Free shipping anywhere."
+                              : "شحن مجاني الي اي مكان"}
+                          </ListGroup.Item>
+                          <ListGroup.Item>
+                            <FontAwesomeIcon
+                              icon={faCheck}
+                              className="me-3 text-success"
+                            />
+                            {isEnglish
+                              ? "Priority booking for you."
+                              : "اولوية الحجز لك "}
+                          </ListGroup.Item>
+                          <ListGroup.Item>
+                            <FontAwesomeIcon
+                              icon={faCheck}
+                              className="me-3 text-success"
+                            />
+                            {isEnglish
+                              ? "Exclusive offers just for you."
+                              : "عروض خاصه لك فقط"}
+                          </ListGroup.Item>
+                          <ListGroup.Item>
+                            <FontAwesomeIcon
+                              icon={faCheck}
+                              className="me-3 text-success"
+                            />
+                            {isEnglish
+                              ? "Continuous order tracking."
+                              : " المتابعة الدائمة للطلبات"}
+                          </ListGroup.Item>
+                          <ListGroup.Item>
+                            <FontAwesomeIcon
+                              icon={faCheck}
+                              className="me-3 text-success"
+                            />
+                            {isEnglish
+                              ? "Premium products for you."
+                              : " منتجات مميزه لك "}
+                          </ListGroup.Item>
+                          <ListGroup.Item>
+                            <FontAwesomeIcon
+                              icon={faCheck}
+                              className="me-3 text-success"
+                            />
+                            {isEnglish
+                              ? "Support available 24/7."
+                              : "الدعم متاح دائما "}
+                          </ListGroup.Item>
+                        </ListGroup>
+                        <Link className="text-center" to={"/Login"}>
+                          <Button className="my-3">
+                            {isEnglish ? "Join Now" : "انضم الان"}
+                          </Button>
+                        </Link>
+                      </Card.Body>
+                    </Card>
+                  </div>
                 </Col>
               </Row>
             </div>

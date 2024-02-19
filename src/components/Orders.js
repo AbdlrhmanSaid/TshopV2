@@ -82,7 +82,7 @@ function Orders() {
     <>
       <div className="orders" style={{ height: "100%", minHeight: "100vh" }}>
         <Container>
-          <h3>
+          <h3 className="mt-5">
             {isEnglish ? "Orders" : "الطلبات"} : {orders.length}
           </h3>
           {orders.length === 0 ? (
@@ -107,7 +107,7 @@ function Orders() {
                       ? "You can explore more amazing products and shop at the best prices. Move here to see for yourself."
                       : "يمكنك التسوق بنفسك ورؤية بعض المنتجات الرائعة وبأسعار مميزة!"}
                   </Card.Text>
-                  <Link to={"/"}>
+                  <Link to={"/shop"}>
                     <Button variant="primary">
                       {isEnglish ? "Shop Now" : "تسوق الان"}
                     </Button>

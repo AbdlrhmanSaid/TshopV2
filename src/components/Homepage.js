@@ -82,82 +82,6 @@ const Homepage = () => {
     ]);
   };
 
-  const OffCanvasExample = ({ name, ...props }) => {
-    const [show, setShow] = useState(false);
-
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-
-    return (
-      <>
-        <Button variant="primary" onClick={handleShow} className="side-btn">
-          <FontAwesomeIcon icon={faBars} />
-        </Button>
-        <Offcanvas
-          show={show}
-          onHide={handleClose}
-          {...props}
-          className="bg-dark"
-        >
-          <Offcanvas.Header closeButton className="hederMenu text-white">
-            <Offcanvas.Title>
-              <FontAwesomeIcon icon={faBars} className="mx-1" />
-              Menu
-            </Offcanvas.Title>
-          </Offcanvas.Header>
-          <Offcanvas.Body>
-            <div className="btns w-100 mb-3  p-2 d-flex flex-column">
-              <div className="catig-btns text-center d-flex flex-column">
-                <a
-                  href="#categories"
-                  className="text-white text-decoration-none"
-                >
-                  <Button
-                    className={`m-2 d-flex justify-content-around align-items-center  w-100 ${
-                      selectedCategory === null ? "active" : ""
-                    }`}
-                    onClick={() => setSelectedCategory(null)}
-                  >
-                    <FontAwesomeIcon icon={faChevronLeft} />
-                    <p className="m-0 w-50">All</p>
-                  </Button>
-                </a>
-                {uniqueCategories.map((category, index) => (
-                  <a
-                    href="#categories"
-                    className="text-white text-decoration-none"
-                  >
-                    <Button
-                      key={index}
-                      variant="primary"
-                      className={`m-2 d-flex justify-content-around align-items-center w-100 ${
-                        selectedCategory === category ? "active" : ""
-                      }`}
-                      onClick={() => setSelectedCategory(category)}
-                    >
-                      <FontAwesomeIcon icon={faChevronLeft} />
-                      <p className="m-0 w-50">{category}</p>
-                    </Button>
-                  </a>
-                ))}
-              </div>
-            </div>
-          </Offcanvas.Body>
-        </Offcanvas>
-      </>
-    );
-  };
-
-  const Example = () => {
-    return (
-      <>
-        {["end"].map((placement, idx) => (
-          <OffCanvasExample key={idx} placement={placement} name={placement} />
-        ))}
-      </>
-    );
-  };
-
   function notLogin() {
     if (isEnglish) {
       Swal.fire({
@@ -386,7 +310,46 @@ const Homepage = () => {
                   </Col>
                 </Row>
               </Form>
+              <div className="catig-btns">
+                <div class="links overflow-auto ">
+                  <ul class="d-flex align-items-center">
+                    <a
+                      href="#categories"
+                      className="text-white text-decoration-none mx-1"
+                    >
+                      <Button
+                        className={` d-flex justify-content-around align-items-center  w-100 ${
+                          selectedCategory === null ? "active" : ""
+                        }`}
+                        onClick={() => setSelectedCategory(null)}
+                      >
+                        <p className="m-0">All</p>
+                      </Button>
+                    </a>
 
+                    {uniqueCategories.map((category, index) => (
+                      <a
+                        href="#categories"
+                        className="text-white text-decoration-none text-center mx-1"
+                      >
+                        <Button
+                          key={index}
+                          variant="primary"
+                          className={`m-2 d-flex justify-content-around align-items-center w-100 text-center ${
+                            selectedCategory === category ? "active" : ""
+                          }`}
+                          onClick={() => setSelectedCategory(category)}
+                        >
+                          <span className="m-0 text-center d-flex flex-none">
+                            {category}
+                          </span>
+                        </Button>
+                      </a>
+                    ))}
+                  </ul>
+                </div>
+                <div className="text-center d-flex overflow-auto justify-content-center align-items-center"></div>
+              </div>
               <>
                 <div className="productsShow overdflow-hidden" id="categories">
                   {filteredProducts.length === 0 ? (
@@ -488,7 +451,6 @@ const Homepage = () => {
             </>
           )}
           <Cart />
-          <Example />
         </Container>
       </div>
     </>

@@ -4,12 +4,23 @@ import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { selectLanguage } from "../rtk/slices/deflanSlice";
 import { useSelector } from "react-redux";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faE } from "@fortawesome/free-solid-svg-icons";
+
 const Footer = () => {
   const isEnglish = useSelector(selectLanguage);
   return (
     <footer className="bg-dark text-light">
       <Container className="pt-3">
-        <Row>
+        <h4>
+          {" "}
+          Shop
+          <span className="bg-white text-black px-1">
+            <FontAwesomeIcon icon={faE} />
+          </span>
+          mpire
+        </h4>
+        <Row className="my-3">
           <Col lg={4} md={6} sm={12}>
             {isEnglish ? (
               <>
