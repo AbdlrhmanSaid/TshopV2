@@ -355,7 +355,7 @@ const Homepage = () => {
                   {filteredProducts.length === 0 ? (
                     <div className="notFound text-center bg-light rounded mb-5 p-3">
                       {isEnglish ? <h2>Not found</h2> : <h2>لم يتم العثور</h2>}
-                      <img src={notFoundImg} />
+                      <img src={notFoundImg} style={{ width: "90%" }} />
                     </div>
                   ) : (
                     <>
