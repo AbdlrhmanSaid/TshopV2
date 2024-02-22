@@ -61,6 +61,7 @@ nav .searchbtn {
   justify-content: center;
   align-items: center;
   background: linear-gradient(to bottom, #212529, #363c42, white);
+  position: relative;
 }
 
 .intro h2 {
@@ -368,7 +369,7 @@ a {
     overflow: hidden;
   }
   .intro img {
-    margin: 0 0 0 110px;
+    margin: 0 0 0 125px;
   }
   .headContent h1 {
     font-size: 40px;
@@ -383,6 +384,18 @@ a {
   }
   .orders {
     background-size: 90%;
+  }
+  .boxContent {
+    margin: 0;
+  }
+  .boxContent .text {
+    font-size: 13px;
+  }
+  .swal2-popup {
+    width: 90%;
+  }
+  .swal2-containe {
+    width: fit-content;
   }
 }
 /* media screen */

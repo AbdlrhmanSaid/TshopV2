@@ -14,7 +14,7 @@ import Favorites from "./components/Favorites";
 import { MaimPage } from "./components/MaimPage";
 function App() {
   return (
-    <div className="App">
+    <div className="App overflow-hidden">
       <NavbarApp />
       <div className="   p-0 ">
         <Routes>
