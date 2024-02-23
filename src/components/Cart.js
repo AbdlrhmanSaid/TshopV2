@@ -6,15 +6,21 @@ import {
   faCartShopping,
   faCheck,
   faTimes,
-  faBoxOpen,
+  faPlus,
   faX,
+  faMinus,
 } from "@fortawesome/free-solid-svg-icons";
 import { useSelector, useDispatch } from "react-redux";
 import { Image, Row, Col } from "react-bootstrap";
 import Swal from "sweetalert2";
 import Modal from "react-bootstrap/Modal";
 import { selectUserData } from "../rtk/slices/userSlice";
-import { deleteFromCart, clearCart } from "../rtk/slices/cartSlice";
+import {
+  addToCart,
+  deleteFromCart,
+  clearCart,
+  decreaseQuantity,
+} from "../rtk/slices/cartSlice";
 import { addOrder } from "../rtk/slices/orderSlice";
 import { selectLanguage } from "../rtk/slices/deflanSlice";
 import empty from "../imgs/empty.png";
@@ -100,6 +106,10 @@ export const Cart = () => {
     }
   };
 
+  const handleDecreaseQuantity = (productId) => {
+    dispatch(decreaseQuantity({ id: productId }));
+  };
+
   return (
     <>
       <Button
@@ -160,19 +170,38 @@ export const Cart = () => {
                         className="bg-white col-color rounded mb-2"
                       >
                         <div className="line my-2 d-flex justify-content-between align-items-center  ">
-                          <div className="box1 me-1">
+                          <div className="box1 me-1 w-25">
                             <Image className="min-pic" src={product.image} />
                           </div>
-                          <div className="box2 text-black">
+                          <div className="box2 text-black w-50">
                             <p className="m-0">{product.title}</p>
                             <p className="m-0">${product.price}</p>
                             <p className="m-0 text-white mt-2 d-flex  align-items-center ">
+                              <Button
+                                variant="danger"
+                                onClick={() =>
+                                  product.quantity <= 1
+                                    ? dispatch(deleteFromCart(product))
+                                    : handleDecreaseQuantity(product.id)
+                                }
+                                className="rounded-circle"
+                              >
+                                <FontAwesomeIcon icon={faMinus} />
+                              </Button>
                               <span className="bg-secondary mx-1 px-3  rounded click">
                                 {product.quantity}
                               </span>
+
+                              <Button
+                                variant="primary"
+                                onClick={() => dispatch(addToCart(product))}
+                                className="rounded-circle"
+                              >
+                                <FontAwesomeIcon icon={faPlus} />
+                              </Button>
                             </p>
                           </div>
-                          <div className="delBtn">
+                          <div className="delBtn w-25">
                             <Button
                               variant="danger"
                               onClick={() => dispatch(deleteFromCart(product))}

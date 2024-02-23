@@ -162,7 +162,7 @@ function Orders() {
                         </Card.Text>
                         <Card.Text>
                           <h4>{isEnglish ? "Total Price" : "الحساب الكلي"}</h4>{" "}
-                          : ${order.totalPrice}
+                          : ${Math.floor(order.totalPrice)}
                         </Card.Text>
                         <Card.Text>
                           <h4>{isEnglish ? "Status" : "حالة الطلب"}</h4> :{" "}
@@ -197,10 +197,10 @@ function Orders() {
                 {selectedOrder.products.map((product, index) => (
                   <Col key={index} className="bg-white col-color rounded mb-2">
                     <div className="line my-2 d-flex justify-content-between align-items-center ">
-                      <div className="box1 me-1">
+                      <div className="box1 me-1 w-25">
                         <Image className="min-pic" src={product.image} />
                       </div>
-                      <div className="box2 text-black">
+                      <div className="box2 text-black w-75">
                         <p className="m-0">{product.title}</p>
                         <p className="m-0">${product.price}</p>
                         <p className="m-0 text-white mt-2 d-flex  align-items-center">

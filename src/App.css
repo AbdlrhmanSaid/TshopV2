@@ -160,6 +160,7 @@ footer a {
   background-image: url(./imgs/delivery.gif);
   background-repeat: no-repeat;
   background-position: center;
+  background-size: 50%;
 }
 
 .modal-header {
@@ -170,6 +171,9 @@ footer a {
   display: flex;
   align-items: center;
 }
+.carousel-item .card {
+  border: none !important;
+}
 
 .col .boxMain:hover {
   border: 1px solid rgb(212, 212, 212);
@@ -177,6 +181,9 @@ footer a {
 
 .Elogo {
   animation: change-colors 5s infinite linear;
+}
+.carousel-indicators {
+  display: none;
 }
 
 @keyframes change-colors {
@@ -320,6 +327,7 @@ a {
     width: 200px;
     margin: auto;
     height: 300px;
+    padding: 15px;
   }
   .btnsAction {
     right: -60px;
@@ -396,6 +404,15 @@ a {
   }
   .swal2-containe {
     width: fit-content;
+  }
+  .carousel-control-next {
+    right: 0 !important;
+  }
+  .carousel-control-prev {
+    left: 0 !important;
+  }
+  .parent-slide {
+    height: 100% !important;
   }
 }
 /* media screen */

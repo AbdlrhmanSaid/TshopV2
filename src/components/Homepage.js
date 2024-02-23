@@ -223,28 +223,15 @@ const Homepage = () => {
                 {isEnglish ? " Best seller " : " الاكثر مبيعا "}
               </h2>
               <Row
-                className="justify-content-center my-3"
-                style={{ flex: "1" }}
+                className="justify-content-center my-3 rounded"
+                style={{ flex: "1", background: "#eee" }}
               >
                 <Col xs={12} md={8} className="parent-slide">
                   <div
                     id="carouselExampleIndicators child-slide"
                     className="carousel slide"
                   >
-                    <div className="carousel-indicators">
-                      {currentImages.map((image, index) => (
-                        <button
-                          key={index}
-                          type="button"
-                          data-bs-target="#carouselExampleIndicators"
-                          data-bs-slide-to={index}
-                          className={index === 0 ? "active" : ""}
-                          aria-current={index === 0 ? "true" : ""}
-                          aria-label={`Slide ${index + 1}`}
-                        ></button>
-                      ))}
-                    </div>
-                    <div className="carousel-inner">
+                    <div className="carousel-inner p-1 position-relative">
                       {currentImages.map((image, index) => (
                         <div
                           key={index}
@@ -267,6 +254,7 @@ const Homepage = () => {
                       type="button"
                       data-bs-target="#carouselExampleIndicators"
                       data-bs-slide="prev"
+                      style={{ left: "-20%" }}
                       onClick={handlePrev}
                     >
                       <span
@@ -280,6 +268,7 @@ const Homepage = () => {
                       type="button"
                       data-bs-target="#carouselExampleIndicators"
                       data-bs-slide="next"
+                      style={{ right: "-20%" }}
                       onClick={handleNext}
                     >
                       <span
@@ -375,7 +364,10 @@ const Homepage = () => {
                             style={{ transition: "0.5s" }}
                           >
                             <div className="boxMain rounded shadow w-100 h-100 overflow-hidden">
-                              <div className="half1 m-auto p-3 w-50 h-50 position-relative">
+                              <div
+                                className="half1 m-auto p-3 w-50 position-relative"
+                                style={{ height: "167px" }}
+                              >
                                 <Image
                                   src={product.image}
                                   className="w-100 h-100 prod-img "
