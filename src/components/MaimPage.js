@@ -25,12 +25,18 @@ import { Col, Row } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import Image from "react-bootstrap/Image";
 import ListGroup from "react-bootstrap/ListGroup";
+import { Helmet } from "react-helmet";
 
 export const MaimPage = () => {
   const isEnglish = useSelector(selectLanguage);
 
   return (
     <>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>ShopEmpire | {isEnglish ? "Main" : "الرئيسية"} </title>
+        <link rel="canonical" href="http://mysite.com/example" />
+      </Helmet>
       <div className="headerIntro text-center position-relative">
         <div className="intro">
           {isEnglish ? (

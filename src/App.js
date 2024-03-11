@@ -12,9 +12,15 @@ import ContactUs from "./components/Contact";
 import Orders from "./components/Orders";
 import Favorites from "./components/Favorites";
 import { MaimPage } from "./components/MaimPage";
+import shopicon from "../src/imgs/shop-icon.png";
+import { Helmet } from "react-helmet";
+
 function App() {
   return (
     <div className="App overflow-hidden">
+      <Helmet>
+        <link rel="icon" type="image/png" href={shopicon} />
+      </Helmet>
       <NavbarApp />
       <div className="   p-0 ">
         <Routes>

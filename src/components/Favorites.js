@@ -7,7 +7,7 @@ import { Image } from "react-bootstrap";
 import { Col, Row } from "react-bootstrap";
 import { deleteFromFav, clearFav } from "../rtk/slices/favSlice";
 import { selectLanguage } from "../rtk/slices/deflanSlice";
-
+import { Helmet } from "react-helmet";
 export const Favorites = () => {
   const isEnglish = useSelector(selectLanguage);
   const fav = useSelector((state) => state.fav);
@@ -15,6 +15,11 @@ export const Favorites = () => {
 
   return (
     <>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>ShopEmpire | {isEnglish ? "Favorite" : "المفضلة"}</title>
+        <link rel="canonical" href="http://mysite.com/example" />
+      </Helmet>
       <div
         className=" p-5 favofrite"
         style={{ height: "100%", minHeight: "100vh" }}

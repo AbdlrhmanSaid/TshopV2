@@ -19,6 +19,7 @@ import { Link } from "react-router-dom";
 import Alert from "react-bootstrap/Alert";
 import { selectLanguage } from "../rtk/slices/deflanSlice";
 import img1 from "../imgs/loginPhoto.png";
+import { Helmet } from "react-helmet";
 
 const cityOptions = {
   cairo: [
@@ -113,6 +114,11 @@ const SettingsPage = () => {
 
   return (
     <>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>ShopEmpire | {isEnglish ? "Settings" : "الاعدادات"}</title>
+        <link rel="canonical" href="http://mysite.com/example" />
+      </Helmet>
       {isLogin ? (
         <div className="container mt-4">
           <div className="card">

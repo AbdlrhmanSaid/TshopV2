@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { selectUserData } from "../rtk/slices/userSlice";
 import { selectLanguage } from "../rtk/slices/deflanSlice";
 import { Container } from "react-bootstrap";
+import { Helmet } from "react-helmet";
 
 const ContactUs = () => {
   const isEnglish = useSelector(selectLanguage);
@@ -27,6 +28,11 @@ const ContactUs = () => {
 
   return (
     <>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>ShopEmpire | {isEnglish ? "ContactUs" : "تواصل"}</title>
+        <link rel="canonical" href="http://mysite.com/example" />
+      </Helmet>
       <div
         className="contact d-flex align-items-center"
         style={{ height: "100vh" }}

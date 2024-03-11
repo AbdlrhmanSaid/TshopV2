@@ -16,6 +16,8 @@ import { selectLanguage } from "../rtk/slices/deflanSlice";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
+import { Helmet } from "react-helmet";
+import OrderDetailsModal from "./OrderDetailsModal";
 
 function Orders() {
   const dispatch = useDispatch();
@@ -80,6 +82,11 @@ function Orders() {
 
   return (
     <>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>ShopEmpire | {isEnglish ? "Orders" : "الطلبات"}</title>
+        <link rel="canonical" href="http://mysite.com/example" />
+      </Helmet>
       <div className="orders" style={{ height: "100%", minHeight: "100vh" }}>
         <Container>
           <h3 className="mt-5">
@@ -184,46 +191,13 @@ function Orders() {
         </Container>
       </div>
       <Container>
-        {/* Show Order Details Modal */}
-        <Modal show={show} onHide={handleClose}>
-          <Modal.Header closeButton>
-            <Modal.Title>
-              {isEnglish ? "Order Details" : "تفاصيل الطلب"}
-            </Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            {selectedOrder && (
-              <Row xs={1} md={1} lg={1}>
-                {selectedOrder.products.map((product, index) => (
-                  <Col key={index} className="bg-white col-color rounded mb-2">
-                    <div className="line my-2 d-flex justify-content-between align-items-center ">
-                      <div className="box1 me-1 w-25">
-                        <Image className="min-pic" src={product.image} />
-                      </div>
-                      <div className="box2 text-black w-75">
-                        <p className="m-0">{product.title}</p>
-                        <p className="m-0">${product.price}</p>
-                        <p className="m-0 text-white mt-2 d-flex  align-items-center">
-                          <span className="bg-secondary mx-1 px-3  rounded click">
-                            {product.quantity}
-                          </span>
-                        </p>
-                      </div>
-                    </div>
-                    <hr />
-                  </Col>
-                ))}
-              </Row>
-            )}
-          </Modal.Body>
-          <Modal.Footer>
-            <Button variant="danger" onClick={handleClose}>
-              {isEnglish ? "Close" : "اغلاق"}
-            </Button>
-          </Modal.Footer>
-        </Modal>
+        <OrderDetailsModal
+          show={show}
+          handleClose={handleClose}
+          isEnglish={isEnglish}
+          selectedOrder={selectedOrder}
+        />
 
-        {/* Cancel Order Modal */}
         <Modal show={showCancelModal} onHide={() => setShowCancelModal(false)}>
           {renderCancelModalContent()}
         </Modal>

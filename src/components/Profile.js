@@ -18,6 +18,7 @@ import Button from "react-bootstrap/Button";
 import { Container } from "react-bootstrap";
 import img1 from "../imgs/loginPhoto.png";
 import img2 from "../imgs/user.png";
+import { Helmet } from "react-helmet";
 
 const Profile = () => {
   const userData = useSelector(selectUserData);
@@ -34,6 +35,11 @@ const Profile = () => {
 
   return (
     <>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>ShopEmpire | {isEnglish ? "Profile" : "الشخصية"}</title>
+        <link rel="canonical" href="http://mysite.com/example" />
+      </Helmet>
       {isLogin ? (
         <Container
           style={{ height: "100%", minHeight: "100vh" }}
