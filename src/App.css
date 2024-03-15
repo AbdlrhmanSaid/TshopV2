@@ -309,6 +309,16 @@ a {
 .links::-webkit-scrollbar-track {
   background-color: transparent; /* لون خلفية شريط التمرير */
 }
+.carousel-Slider {
+  height: 100%;
+  position: relative;
+}
+
+.imgSLider {
+  width: 50%;
+  margin: 15% 0;
+}
+
 /* media screen */
 @media (max-width: 767px) {
   body {
@@ -425,6 +435,17 @@ a {
   }
   ::-webkit-scrollbar {
     width: 0px;
+  }
+  .carousel-Slider {
+    height: 160px;
+    position: relative;
+  }
+  .imgSLider {
+    width: 80%;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
   }
 }
 /* media screen */

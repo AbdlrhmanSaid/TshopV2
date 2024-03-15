@@ -15,6 +15,15 @@ import { Container } from "react-bootstrap";
 import Placeholder from "react-bootstrap/Placeholder";
 import ProductList from "./ProductList ";
 import { Helmet } from "react-helmet";
+import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
 
 const Homepage = () => {
   const dispatch = useDispatch();
@@ -216,64 +225,27 @@ const Homepage = () => {
               >
                 {isEnglish ? " Best seller " : " الاكثر مبيعا "}
               </h2>
-              <Row
-                className="justify-content-center my-3 rounded"
-                style={{ flex: "1", background: "#eee" }}
+              <Swiper
+                // install Swiper modules
+                modules={[Navigation, Pagination, Scrollbar, A11y]}
+                spaceBetween={50}
+                slidesPerView={3}
+                navigation
+                pagination={{ clickable: true }}
+                scrollbar={{ draggable: true }}
+                onSwiper={(swiper) => console.log(swiper)}
+                onSlideChange={() => console.log("slide change")}
+                className="my-3  rounded shadow overflow-hidden"
               >
-                <Col xs={12} md={8} className="parent-slide">
-                  <div
-                    id="carouselExampleIndicators child-slide"
-                    className="carousel slide"
-                  >
-                    <div className="carousel-inner p-1 position-relative">
-                      {currentImages.map((image, index) => (
-                        <div
-                          key={index}
-                          className={`carousel-item ${
-                            index === 0 ? "active" : ""
-                          }`}
-                        >
-                          <Card className="text-center">
-                            <Card.Img
-                              variant="top"
-                              src={image}
-                              alt={`Slide ${index + 1}`}
-                            />
-                          </Card>
-                        </div>
-                      ))}
+                {currentImages.map((image, index) => (
+                  <SwiperSlide>
+                    {" "}
+                    <div className="carousel-Slider  text-center" key={index}>
+                      <img src={image} className="imgSLider " />
                     </div>
-                    <button
-                      className="carousel-control-prev"
-                      type="button"
-                      data-bs-target="#carouselExampleIndicators"
-                      data-bs-slide="prev"
-                      style={{ left: "-20%" }}
-                      onClick={handlePrev}
-                    >
-                      <span
-                        className="carousel-control-prev-icon"
-                        aria-hidden="true"
-                      ></span>
-                      <span className="visually-hidden">Previous</span>
-                    </button>
-                    <button
-                      className="carousel-control-next"
-                      type="button"
-                      data-bs-target="#carouselExampleIndicators"
-                      data-bs-slide="next"
-                      style={{ right: "-20%" }}
-                      onClick={handleNext}
-                    >
-                      <span
-                        className="carousel-control-next-icon"
-                        aria-hidden="true"
-                      ></span>
-                      <span className="visually-hidden">Next</span>
-                    </button>
-                  </div>
-                </Col>
-              </Row>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
               <Form
                 inline
                 onSubmit={(e) => e.preventDefault()}
