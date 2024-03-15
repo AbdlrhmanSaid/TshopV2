@@ -1,6 +1,7 @@
 /* global */
 body {
   background-color: #212529;
+  padding: 0 10px 0 0;
 }
 
 a {
@@ -151,7 +152,6 @@ footer a {
   margin: auto;
 }
 .prodsMain {
-  background-image: url(./imgs/products.png);
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-position: center;
@@ -175,8 +175,11 @@ footer a {
   border: none !important;
 }
 
+.col .boxMain {
+  transition: 0.3s;
+}
 .col .boxMain:hover {
-  border: 1px solid rgb(212, 212, 212);
+  background-color: rgb(243, 243, 243);
 }
 
 .Elogo {
@@ -308,6 +311,9 @@ a {
 }
 /* media screen */
 @media (max-width: 767px) {
+  body {
+    padding: 0;
+  }
   .btns {
     font-size: 10px;
   }
@@ -413,6 +419,12 @@ a {
   }
   .parent-slide {
     height: 100% !important;
+  }
+  body {
+    padding: 0;
+  }
+  ::-webkit-scrollbar {
+    width: 0px;
   }
 }
 /* media screen */
